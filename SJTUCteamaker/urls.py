@@ -19,7 +19,13 @@ from django.urls import path
 from home_interface import views as homeviews
 from main_interface import views as mainviews
 from team_interface import views as teamviews
+from django.views.generic import RedirectView
+
 urlpatterns = [
+    path('', RedirectView.as_view(url='/index/')),
     path('admin/', admin.site.urls),
     path('index/', homeviews.index),
-]
+    path('login/', mainviews.login, name='login'),
+    path('logout/', mainviews.logout, name='logout'),
+    path('blog/', homeviews.blog, name='blog'),
+    ]
