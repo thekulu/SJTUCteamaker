@@ -1,0 +1,112 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人主页</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+    <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'vendor/icofont/icofont.min.css' %}" rel="stylesheet">
+    <link href="{% static 'vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
+    <link href="{% static 'vendor/venobox/venobox.css' %}" rel="stylesheet">
+    <link href="{% static 'vendor/owl.carousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+    <link href="{% static 'vendor/aos/aos.css' %}" rel="stylesheet">
+
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+
+    <link rel="stylesheet" href="{% static 'personal.css' %}">
+</head>
+
+<body>
+    <header id="header">
+        <div class="container d-flex">
+    
+          <div class="logo mr-auto">
+            <a href="/index"></a>
+            <span id="easter_egg3" class="text-light" style="font-size: 2rem;"><a href="/index">竞赛组队</a></span>
+          </div>
+    
+          <nav class="nav-menu d-none d-lg-block">
+            <ul>
+              <li class="active"><a href="/index">欢迎 Home</a></li> 
+              <li><a href="/home">竞赛项目</a></li>
+              <li><a href="#team">讨论区</a></li>
+              <li><a href="#faq">Q&A</a></li>
+              <li><a href="/personal">个人主页</a></li>
+              <li><a href="/login">登陆login/登出logout</a></li>
+    
+            </ul>
+          </nav><!-- .nav-menu -->
+    
+        </div>
+      </header><!-- End Header -->
+
+    <div class="container">  
+      <!-- 侧边导航栏 -->
+      <div class="sidenav">
+        <a href="/personal">个人资料</a>
+        <a href="/team_created">创建的队伍</a>
+        <a href="/team_join">加入的队伍</a>
+        <a href="/team_apply">申请的队伍</a>
+      </div>
+      <!-- 内容区 -->
+      <div class="content">
+        <div class="profile">
+          <img src="{% static 'images/头像.jpeg' %}" alt="头像" class="avatar">
+          <div class="profile-info">
+            <span class="nickname">小心超人</span>
+            <span class="idnum">ID:123456</span>
+          </div>
+        </div>
+        <button class="edit-button">编辑资料</button>
+        <table class="personal-table">
+          <tr>
+            <td class="personal-info1">
+              年级：</td>
+            <td class="personal-info">
+              21级</td>
+          </tr>
+          <tr>
+            <td class="personal-info1">
+              专业：</td>
+            <td class="personal-info">
+              信息安全</td>
+          </tr>
+          <tr>
+            <td class="personal-info1">
+              邮箱：</td>
+            <td class="personal-info">
+              example@sjtu.edu.cn</td>
+          </tr>
+          <tr>
+            <td class="personal-info1">
+              个人简介：</td>
+            <td class="personal-info">
+              这是我的个人简介</td>
+          </tr>
+      </div>
+    </div>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'vendor/jquery.easing/jquery.easing.min' %}.js"></script>
+    <script src="{% static 'vendor/php-email-form/validate' %}.js"></script>
+    <script src="{% static 'vendor/jquery-sticky/jquery.sticky' %}.js"></script>
+    <script src="{% static 'vendor/venobox/venobox.min.js' %}"></script>
+    <script src="{% static 'vendor/owl.carousel/owl.carousel.min' %}.js"></script>
+    <script src="{% static 'vendor/isotope-layout/isotope.pkgd.min' %}.js"></script>
+    <script src="{% static 'vendor/aos/aos' %}.js"></script>
+    <script src="{% static 'js/main' %}.js"></script>
+    <script src="/__/firebase/7.19.1/firebase-app.js"></script>
+    <script src="/__/firebase/7.19.1/firebase-analytics.js"></script>
+    <script src="/__/firebase/init.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <script src="sweetalert2/dist/sweetalert2.all.min.js"></script>
+</body>
+
+</html>

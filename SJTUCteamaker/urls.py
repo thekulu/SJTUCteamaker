@@ -24,8 +24,12 @@ from django.views.generic import RedirectView
 urlpatterns = [
     path('', RedirectView.as_view(url='/index/')),
     path('admin/', admin.site.urls),
-    path('index/', homeviews.index),
+    path('index/', mainviews.index),
     path('blog/', homeviews.blog),
     path('blog-single/', homeviews.blogs),
-    path('home/', mainviews.index),
+    path('home/', homeviews.home),
+    path('personal/', mainviews.personal),
+    path('team_apply/', mainviews.team_apply),
+    path('team_created/', mainviews.team_created),
+    path('team_join/', mainviews.team_join),
 ]
