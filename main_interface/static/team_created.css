@@ -1,0 +1,87 @@
+.team_table {
+    margin-top: 20px; 
+    flex-grow: 1; /* 填充剩余空间 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
+
+  h2 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    text-align: center;
+  }
+
+  .search_container {
+    position: absolute;
+    right: 200px; /* 调整搜索框与页面右侧的距离 */
+  }
+
+  .small-cell{
+    width: 100px;
+    height: 60px;
+    font-size: 20px;
+  }
+
+  .middle-cell{
+    width: 150px; 
+    height: 60px;
+    font-size: 20px;
+  }
+
+  .large-cell{
+    width: 450px; 
+    height: 60px;
+    font-size: 20px;
+  }
+
+  .table_container{
+    position: relative;
+    top: 150px; 
+  }
+
+  table {
+    border-collapse: collapse; /* 合并单元格边框 */
+  }
+  
+  td {
+    border-bottom: 1px solid black; /* 添加底部边框 */
+  }
+
+  .member-cell {
+    display: flex;
+    align-items: center;
+  }
+  
+  .member-avatar {
+    margin-right: 10px;
+    display: inline-block;
+  }
+  
+  .member-avatar img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  
+  td.member-cell {
+    text-align: left;
+  }
+
+  .option-button{
+    background-color: #dddddd;
+    border: none;
+    border-radius: 5px;
+    border: 1px solid black; 
+    font-size: 16px;
+  }
+  
+  .option-button:hover {
+      background-color: #ccc;
+  }
+  }

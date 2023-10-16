@@ -1,5 +1,5 @@
 """
-URL configuration for SJTUCteamaker project.
+URL configuration for mysite2 project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/4.2/topics/http/urls/
@@ -19,7 +19,17 @@ from django.urls import path
 from home_interface import views as homeviews
 from main_interface import views as mainviews
 from team_interface import views as teamviews
+from django.views.generic import RedirectView
+
 urlpatterns = [
+    path('', RedirectView.as_view(url='/index/')),
     path('admin/', admin.site.urls),
-    path('index/', homeviews.index),
+    path('index/', mainviews.index),
+    path('blog/', homeviews.blog),
+    path('blog-single/', homeviews.blogs),
+    path('home/', homeviews.home),
+    path('personal/', mainviews.personal),
+    path('team_apply/', mainviews.team_apply),
+    path('team_created/', mainviews.team_created),
+    path('team_join/', mainviews.team_join),
 ]
