@@ -112,7 +112,7 @@
           <li><a href="index.html">主页</a></li>
           <li><a href="blog.html">科创信息一览</a></li>
         </ol>
-        <h2>创新竞赛1 —— 从 MySQL 数据库获取</h2>
+        <h2>创新竞赛1 —— {{ competition.name }}</h2>
       </div>
     </section><!-- End Breadcrumbs -->
 
@@ -149,7 +149,7 @@
               </div>
 
               <h2 class="entry-title">
-                <a href="blog-single.html">创新竞赛1 —— 从 MySQL 数据库获取</a>
+                <a href="blog-single.html">创新竞赛1 —— {{ competition.name }}</a>
               </h2>
 
               
@@ -169,7 +169,7 @@
                 </h4>
                 <p>
                   <!-- 需要与数据库交互 -->
-                  竞赛简介{{ obj.info }}
+                  竞赛简介 {{ competition.description }}
                 </p>
                 <table class = "table table-borderless">
                   
@@ -185,11 +185,11 @@
                     
                     <tr>
                       <td>报名时间</td>  
-                      <td>{{ obj.start }} - {{ obj.end  }}</td>
+                      <td>{{ competition.start_date }}</td>
                     </tr>
                     <tr>
                       <td>启动时间</td>  
-                      <td>{{ obj.time }}</td>
+                      <td>{{ competition.end_date }}</td>
                     </tr>
                     <tr>
                       <td>团队人数要求</td>  
