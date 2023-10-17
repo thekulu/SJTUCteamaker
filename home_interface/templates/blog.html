@@ -6,9 +6,10 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Blog - Flexor Bootstrap Template</title>
-  <meta content="" name="description">
-  <meta content="" name="keywords">
+  <title>1kM</title>
+  <meta content="竞赛组队" name="keywords">
+  <!-- 网站logo<link rel="icon" href="assets/img/controller_icon.png" type="image/x-icon" /> -->
+  <meta name="Description" content="浏览，发布竞赛组队信息。让你的竞赛不再孤单">
 
   <!-- Favicons -->
   <link href="{% static 'img/favicon.png' %}" rel="icon">
@@ -39,20 +40,6 @@
 
 <body>
 
-  <!-- ======= Top Bar ======= -->
-  <section id="topbar" class="d-flex align-items-center">
-    <div class="container d-flex justify-content-center justify-content-md-between">
-      <div class="contact-info d-flex align-items-center">
-        <i class="bi bi-envelope d-flex align-items-center"><a href="mailto:contact@example.com">contact@example.com</a></i>
-        <i class="bi bi-phone d-flex align-items-center ms-4"><span>+1 5589 55488 55</span></i>
-      </div>
-
-      <div class="cta d-none d-md-flex align-items-center">
-        <a href="#about" class="scrollto">Get Started</a>
-      </div>
-    </div>
-  </section>
-
   <!-- ======= Header ======= -->
   <header id="header" class="d-flex align-items-center">
     <div class="container d-flex align-items-center justify-content-between">
@@ -65,33 +52,14 @@
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a class="nav-link scrollto " href="#hero">Home</a></li>
-          <li><a class="nav-link scrollto" href="#about">About</a></li>
-          <li><a class="nav-link scrollto" href="#services">Services</a></li>
-          <li><a class="nav-link scrollto " href="#portfolio">Portfolio</a></li>
-          <li><a class="nav-link scrollto" href="#team">Team</a></li>
-          <li><a class="nav-link scrollto" href="#pricing">Pricing</a></li>
-          <li><a class="active" href="/blog">Blog</a></li>
-          <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
-            <ul>
-              <li><a href="#">Drop Down 1</a></li>
-              <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-right"></i></a>
-                <ul>
-                  <li><a href="#">Deep Drop Down 1</a></li>
-                  <li><a href="#">Deep Drop Down 2</a></li>
-                  <li><a href="#">Deep Drop Down 3</a></li>
-                  <li><a href="#">Deep Drop Down 4</a></li>
-                  <li><a href="#">Deep Drop Down 5</a></li>
-                </ul>
-              </li>
-              <li><a href="#">Drop Down 2</a></li>
-              <li><a href="#">Drop Down 3</a></li>
-              <li><a href="#">Drop Down 4</a></li>
-            </ul>
-          </li>
-          <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+          
+          <li><a class="nav-link scrollto " href="/index">欢迎 Home</a></li>
+          <li><a class="nav-link scrollto" href="/blog">竞赛大厅</a></li>
+          <li><a class="nav-link scrollto" href="/blog">讨论区</a></li>
+          <li><a class="nav-link scrollto " href="Q&A.html">Q & A</a></li>
+          <li><a class="nav-link scrollto" href="/personal">个人主页</a></li>
+          <li><a href="login.html">登陆login/登出logout</a></li>
         </ul>
-        <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
 
     </div>
@@ -103,8 +71,8 @@
     <section id="breadcrumbs" class="breadcrumbs">
       <div class="container">
         <ol>
-          <li><a href="index.html">主页</a></li>
-          <li>科创信息一览</li>
+          <li><a href="/index">主页</a></li>
+          <li><a href="/blog">科创信息一览</a></li>
         </ol>
         <h2>科创信息一览</h2>
       </div>
@@ -122,104 +90,26 @@
             <article class="entry">
               <!-- ===== 标题 ===== -->
               <h2 class="entry-title">
-                <a href="/blog-single">创新竞赛1 —— 从 MySQL 数据库获取</a>
+                <a href="/blog-single">“挑战杯” 全国大学生课外学术科技作品竞赛</a>
               </h2>
 
-              <div class="entry-meta">
+              <!-- <div class="entry-meta">
                 <ul>
-                  <!-- ===== 超链接 ===== -->
                   <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="/blog-single">John Doe</a></li>
                   <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="/blog-single"><time datetime="2020-01-01">Jan 1, 2020</time></a></li>
                   <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="/blog-single">12 Comments</a></li>
                 </ul>
-              </div>
+              </div> -->
 
               <div class="entry-content">
                 <p>
                   <!-- ===== 正文描述 ===== -->
-                  这里是关于该竞赛的一些描述信息 —— 同样需要从 MySQL 数据库获取
+                  “挑战杯” 系列竞赛被誉为中国大学生学术科技 “奥林匹克” ，是国内大学生最关注最热门的全国性竞赛，也是全国最具代表性、权威性、示范性、导向性的大学生竞赛。
+                  该竞赛每两年举办一次，旨在鼓励大学生勇于创新、迎接挑战的精神，培养跨世纪创新人才。
                 </p>
                 <!-- ===== 超链接 ===== -->
                 <div class="read-more">
                   <a href="/blog-single">了解更多</a>
-                </div>
-              </div>
-
-            </article><!-- End blog entry -->
-
-            <article class="entry">
-
-              <h2 class="entry-title">
-                <a href="/blog-single">Nisi magni odit consequatur autem nulla dolorem</a>
-              </h2>
-
-              <div class="entry-meta">
-                <ul>
-                  <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="/blog-single">John Doe</a></li>
-                  <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="/blog-single"><time datetime="2020-01-01">Jan 1, 2020</time></a></li>
-                  <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="/blog-single">12 Comments</a></li>
-                </ul>
-              </div>
-
-              <div class="entry-content">
-                <p>
-                  Incidunt voluptate sit temporibus aperiam. Quia vitae aut sint ullam quis illum voluptatum et. Quo libero rerum voluptatem pariatur nam.
-                  Ad impedit qui officiis est in non aliquid veniam laborum. Id ipsum qui aut. Sit aliquam et quia molestias laboriosam. Tempora nam odit omnis eum corrupti qui aliquid excepturi molestiae. Facilis et sint quos sed voluptas. Maxime sed tempore enim omnis non alias odio quos distinctio.
-                </p>
-                <div class="read-more">
-                  <a href="/blog-single">Read More</a>
-                </div>
-              </div>
-
-            </article><!-- End blog entry -->
-
-            <article class="entry">
-
-              <h2 class="entry-title">
-                <a href="/blog-single">Possimus soluta ut id suscipit ea ut. In quo quia et soluta libero sit sint.</a>
-              </h2>
-
-              <div class="entry-meta">
-                <ul>
-                  <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="/blog-single">John Doe</a></li>
-                  <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="/blog-single"><time datetime="2020-01-01">Jan 1, 2020</time></a></li>
-                  <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="/blog-single">12 Comments</a></li>
-                </ul>
-              </div>
-
-              <div class="entry-content">
-                <p>
-                  Aut iste neque ut illum qui perspiciatis similique recusandae non. Fugit autem dolorem labore omnis et. Eum temporibus fugiat voluptate enim tenetur sunt omnis.
-                  Doloremque est saepe laborum aut. Ipsa cupiditate ex harum at recusandae nesciunt. Ut dolores velit.
-                </p>
-                <div class="read-more">
-                  <a href="/blog-single">Read More</a>
-                </div>
-              </div>
-
-            </article><!-- End blog entry -->
-
-            <article class="entry">
-
-              <h2 class="entry-title">
-                <a href="/blog-single">Non rem rerum nam cum quo minus. Dolor distinctio deleniti explicabo eius exercitationem.</a>
-              </h2>
-
-              <div class="entry-meta">
-                <ul>
-                  <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="/blog-single">John Doe</a></li>
-                  <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="/blog-single"><time datetime="2020-01-01">Jan 1, 2020</time></a></li>
-                  <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="/blog-single">12 Comments</a></li>
-                </ul>
-              </div>
-
-              <div class="entry-content">
-                <p>
-                  Aspernatur rerum perferendis et sint. Voluptates cupiditate voluptas atque quae. Rem veritatis rerum enim et autem. Saepe atque cum eligendi eaque iste omnis a qui.
-                  Quia sed sunt. Ea asperiores expedita et et delectus voluptates rerum. Id saepe ut itaque quod qui voluptas nobis porro rerum. Quam quia nesciunt qui aut est non omnis. Inventore occaecati et quaerat magni itaque nam voluptas. Voluptatem ducimus sint id earum ut nesciunt sed corrupti nemo.
-                </p>
-                <div class="read-more">
-                  <a href="/blog-single">Read More</a>
                 </div>
               </div>
 
@@ -252,74 +142,184 @@
               </div><!-- End sidebar search formn-->
 
               <!-- ===== 类别标签 ===== -->
-              <h3 class="sidebar-title">Categories</h3>
+              <h3 class="sidebar-title">类别</h3>
               <div class="sidebar-item categories">
                 <ul>
-                  <li><a href="#">General <span>(25)</span></a></li>
-                  <li><a href="#">Lifestyle <span>(12)</span></a></li>
-                  <li><a href="#">Travel <span>(5)</span></a></li>
-                  <li><a href="#">Design <span>(22)</span></a></li>
-                  <li><a href="#">Creative <span>(8)</span></a></li>
-                  <li><a href="#">Educaion <span>(14)</span></a></li>
+                  <li><a href="#">科研项目 <span>(25)</span></a></li>
+                  <li><a href="#">技能竞赛 <span>(12)</span></a></li>
+                  <li><a href="#">科创竞赛 <span>(5)</span></a></li>
                 </ul>
               </div><!-- End sidebar categories-->
               
-              <!-- ===== 热门推荐 （需要从MySQL数据库中获取） ===== -->
-              <h3 class="sidebar-title">Recent Posts</h3>
-              <div class="sidebar-item recent-posts">
-                <div class="post-item clearfix">
-                  <img src="{% static 'img/blog/blog-recent-1.jpg' %}" alt="">
-                  <h4><a href="/blog-single">Nihil blanditiis at in nihil autem</a></h4>
-                  <time datetime="2020-01-01">Jan 1, 2020</time>
+              <!-- 模态 -->
+              <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#myModal">
+                新建竞赛
+              </button>
+
+              <!-- 模态 -->
+              <div class="modal" id="myModal">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+
+                    <!-- 模态标题 -->
+                    <div class="modal-header">
+                      <h4 class="modal-title">新建竞赛</h4>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+
+                    <!-- 模态主体 -->
+                    <div class="modal-body">
+
+                    <form role="form">
+                      
+                      <!-- 输入名称 -->
+                      <div class="container">
+                        <div class="form-group">
+                          <label for="name">
+                            <p>项目名称</p>
+                            <p></p>
+                          </label>
+                          <input type="text" class="form-control" id="name" placeholder="请输入名称">
+                        </div>
+                        <p id="name-check"></p>
+                      </div>
+                      
+                      <!-- 来源网站 -->
+                      <div class="container">
+                        <div class="form-group">
+                          <label for="url">
+                            <p>来源网站</p>
+                            <p></p>
+                          </label>
+                          <input type="text" class="form-control" id="url" placeholder="请输入url">
+                        </div>
+                        <p id="url-check"></p>
+                      </div>
+
+                      <!-- 上传图片 -->
+                      <div class="container">
+                        <div class="form-group">
+                          <label for="inputfile">竞赛图片</label>
+                          <input type="file" id="inputfile">
+                          <!-- <p class="help-block">这里是块级帮助文本的实例。</p> -->
+                        </div>
+                        <p id="photo-check"></p>
+                      </div>
+
+                      <!-- 参赛人数 -->
+                      <div class="container">
+                        <div class="form-group">
+                          <label for="numb">
+                            <p>参赛人数</p>
+                            <p></p>
+                          </label>
+                          <input id="number" type="number" value="1" class="form-control"  id="numb" placeholder="请输入参赛人数">
+                          <p id="check-numb"></p>
+                        </div>
+                      </div>
+
+                      <!-- 勾选什么东西 -->
+                      <!--
+                        <div class="container">
+                          <div class="checkbox">
+                            <label>
+                              <input type="checkbox">请打勾
+                            </label>
+                          </div>
+                        <p id="？？？？"></p>
+                        </div>
+                      -->
+                      
+                      <!-- 单选框 -->
+                      <div class="container">
+                        <label for="type">
+                          <p>竞赛类别</p>
+                          <p></p>    
+                        </label>
+                        <div class="form-check">
+                          <input type="radio" class="form-check-input" id="radio1" name="optradio" value="option1" checked>科研项目
+                          <label class="form-check-label" for="radio1"></label>
+                        </div>
+                        <div class="form-check">
+                          <input type="radio" class="form-check-input" id="radio2" name="optradio" value="option2">技能竞赛
+                          <label class="form-check-label" for="radio2"></label>
+                        </div>
+                        <div class="form-check">
+                          <input type="radio" class="form-check-input" id="radio3" name="optradio" value="option3">科创竞赛
+                          <label class="form-check-label"></label>
+                        </div>
+                        <p id="option-check"></p>
+                      </div>
+
+                      <div class="container">
+                        <div class="form-group">
+                          <label for="start_regi">
+                            <p>报名开始时间</p> 
+                            <p></p>
+                          </label>
+                          <input type="date" value="2023-10-15" class="form-control" id="start_regi" placeholder="报名开始时间">
+                        </div>
+                        <p id="content-check"></p>
+                      </div>
+
+                      <!-- 报名截止时间 -->
+                      <div class="container">
+                        <div class="form-group">
+                          <label for="end_regi">
+                            <p>报名截止时间</p> 
+                            <p></p>
+                          </label>
+                          <input type="date" value="2023-10-15" class="form-control" id="end_regi" placeholder="报名截止时间">
+                        </div>
+                        <p id="content-check"></p>
+                      </div>
+
+                      <!-- 项目开始时间 -->
+                      <div class="container">
+                        <div class="form-group">
+                          <label for="start_compt">
+                            <p>项目开始时间</p> 
+                            <p></p>
+                          </label>
+                          <input type="date" value="2023-10-15" class="form-control" id="start_compt" placeholder="项目开始时间">
+                        </div>
+                        <p id="content-check"></p>
+                      </div>
+
+                      <!-- 输入简介 -->
+                      <div class="container">
+                        <div class="form-group">
+                          <label for="intro">
+                            <p>项目简介</p>
+                            <p></p>
+                          </label>
+                          <input type="text" class="form-control" id="intro" placeholder="请输入项目介绍">
+                        </div>
+                        <p id="content-check"></p>
+                      </div>
+
+                      
+
+
+                      <!-- 没有实现的时间选择框 -->
+                      <div id="container" style="padding: 24px" />
+                        <script>const mountNode = document.getElementById('container');</script>
+                      
+                      
+                      
+                      <button type="button" class="btn btn-light" onclick="myFunction()">提交</button>
+                      <button type="button" class="btn btn-danger" data-bs-dismiss="modal">关闭</button>
+                    
+                    </form>
+
+                  </div>
                 </div>
-
-                <div class="post-item clearfix">
-                  <img src="{% static 'img/blog/blog-recent-2.jpg' %}" alt="">
-                  <h4><a href="/blog-single">Quidem autem et impedit</a></h4>
-                  <time datetime="2020-01-01">Jan 1, 2020</time>
-                </div>
-
-                <div class="post-item clearfix">
-                  <img src="{% static 'img/blog/blog-recent-3.jpg' %}" alt="">
-                  <h4><a href="/blog-single">Id quia et et ut maxime similique occaecati ut</a></h4>
-                  <time datetime="2020-01-01">Jan 1, 2020</time>
-                </div>
-
-                <div class="post-item clearfix">
-                  <img src="{% static 'img/blog/blog-recent-4.jpg' %}" alt="">
-                  <h4><a href="/blog-single">Laborum corporis quo dara net para</a></h4>
-                  <time datetime="2020-01-01">Jan 1, 2020</time>
-                </div>
-
-                <div class="post-item clearfix">
-                  <img src="{% static 'img/blog/blog-recent-5.jpg' %}" alt="">
-                  <h4><a href="/blog-single">Et dolores corrupti quae illo quod dolor</a></h4>
-                  <time datetime="2020-01-01">Jan 1, 2020</time>
-                </div>
-
-              </div><!-- End sidebar recent posts-->
-
-              <!-- ===== 这里还是类别标签 ===== -->
-              <h3 class="sidebar-title">Tags</h3>
-              <div class="sidebar-item tags">
-                <ul>
-                  <li><a href="#">App</a></li>
-                  <li><a href="#">IT</a></li>
-                  <li><a href="#">Business</a></li>
-                  <li><a href="#">Mac</a></li>
-                  <li><a href="#">Design</a></li>
-                  <li><a href="#">Office</a></li>
-                  <li><a href="#">Creative</a></li>
-                  <li><a href="#">Studio</a></li>
-                  <li><a href="#">Smart</a></li>
-                  <li><a href="#">Tips</a></li>
-                  <li><a href="#">Marketing</a></li>
-                </ul>
-              </div><!-- End sidebar tags-->
+              </div>
 
             </div><!-- End sidebar -->
 
           </div><!-- End blog sidebar -->
+
 
         </div>
 
@@ -331,77 +331,50 @@
   <!-- ======= Footer ======= -->
   <footer id="footer">
 
-    <div class="footer-top">
-      <div class="container">
-        <div class="row">
+    <!-- second part : icons -->
+    <div id="footer_icon_container">
+      <div class="homepage_footer_icons mail_white_icon" onclick="window.open('mailto:yum001@ucsd.edu')">
+        <div id="homepage_footer_widget_mail" class="homepage_footer_widgets">
+        </div>
+      </div>
+      <div class="homepage_footer_icons github_black_icon" onclick="window.open ('https://github.com/YueqianMa/Unicode_Hackathon')">
+        <div id="homepage_footer_widget_github" class="homepage_footer_widgets">
+        </div>
+      </div>
 
-          <div class="col-lg-3 col-md-6 footer-contact">
-            <h3>Flexor</h3>
-            <p>
-              A108 Adam Street <br>
-              New York, NY 535022<br>
-              United States <br><br>
-              <strong>Phone:</strong> +1 5589 55488 55<br>
-              <strong>Email:</strong> info@example.com<br>
-            </p>
-          </div>
+      <div class="homepage_footer_icons green_icon" onmouseover="showImg('wechat')" onmouseout="hideImg('wechat')">
+        <div id="homepage_footer_widget_wechat" class="homepage_footer_widgets">
+          <img id="wechat" src="/assets/img/icons/wechatQR3.jpg" style="opacity: 1; z-index: 1;">
+          <!-- 这个图片没有插入成功 -->
+        </div>
+      </div>
 
-          <div class="col-lg-2 col-md-6 footer-links">
-            <h4>Useful Links</h4>
-            <ul>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Services</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
-            </ul>
-          </div>
+      <div class="homepage_footer_icons facebook_blue_icon" onclick="window.open ('https://www.facebook.com')">
+        <div id="homepage_footer_widget_facebook" class="homepage_footer_widgets">
+        </div>
+      </div>  
 
-          <div class="col-lg-3 col-md-6 footer-links">
-            <h4>Our Services</h4>
-            <ul>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Web Design</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Web Development</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Product Management</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Marketing</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Graphic Design</a></li>
-            </ul>
-          </div>
-
-          <div class="col-lg-4 col-md-6 footer-newsletter">
-            <h4>Join Our Newsletter</h4>
-            <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna</p>
-            <form action="" method="post">
-              <input type="email" name="email"><input type="submit" value="Subscribe">
-            </form>
-          </div>
-
+      <div class="homepage_footer_icons ins_pink_icon" onclick="window.open('https://www.instagram.com')">
+        <div id="homepage_footer_widget_instagram" class="homepage_footer_widgets">
         </div>
       </div>
     </div>
 
-    <div class="container d-lg-flex py-4">
 
-      <div class="me-lg-auto text-center text-lg-start">
-        <div class="copyright">
-          &copy; Copyright <strong><span>Flexor</span></strong>. All Rights Reserved
+
+      <div class="mr-lg-auto text-center text-lg-left"  style="text-align: center;">
+        <div class="copyright" align="center">
+            Copyright &copy; <script>document.write(new Date().getFullYear());</script> <strong>1kM</strong> All rights reserved.
         </div>
-        <div class="credits">
-          <!-- All the links in the footer should remain intact. -->
-          <!-- You can delete the links only if you purchased the pro version. -->
-          <!-- Licensing information: https://bootstrapmade.com/license/ -->
-          <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/flexor-free-multipurpose-bootstrap-template/ -->
-          Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+        <div style="opacity: 0.3;" align="center">
+            This template is made with by <a href="https://bootstrapmade.com/" target="_blank" class="text-primary">BootstrapMade</a>
         </div>
+        <p> </p>
       </div>
-      <div class="social-links text-center text-lg-right pt-3 pt-lg-0">
-        <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
-        <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
-        <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
-        <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
-        <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
-      </div>
-    </div>
+
+
+
+
   </footer><!-- End Footer -->
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
@@ -416,6 +389,66 @@
 
   <!-- Template Main JS File -->
   <script src="{% static 'js/main.js' %}"></script>
+
+  <!-- 表单输入检查 -->
+  <script>
+    function myFunction() {
+      // 获取 id = "numb" 的输入字段的值
+      let x = document.getElementById("numb").value;
+      // 如果 x 不是数字或小于 1 或大于 10
+      let text;
+      if (isNaN(x) || x < 1 || x > 10) {
+        text = "输入无效";
+      } else {
+        text = "输入没问题";
+      }
+      document.getElementById("demo").innerHTML = text;
+
+  }
+  </script>
+
+  <!-- 用cookie传递参数 (当前竞赛的id值) -->
+  <script>
+
+    function SetCookie(cookieName,cookieValue,nDays) {
+        /*当前日期*/
+        var today = new Date();
+        /*Cookie过期时间*/
+        var expire = new Date();
+        /*如果未设置nDays参数或者nDays为0，取默认值1*/
+        if(nDays == null || nDays == 0) {
+                nDays = 1;
+            }
+            /*计算Cookie过期时间*/
+            expire.setTime(today.getTime() + 3600000 * 24 * nDays);
+            /*设置Cookie值*/
+            document.cookie = cookieName + "=" + escape(cookieValue) + ";expires=" + expire.toGMTString();
+    }
+
+    function sends( id ){
+    
+        SetCookie("id", id ,1);
+    
+        document.location = "blog-single.html";
+    }
+  </script>
+
+  <script>
+    import React from 'react';
+    import dayjs from 'dayjs';
+    import customParseFormat from 'dayjs/plugin/customParseFormat';
+    import { TimePicker } from 'antd';
+      dayjs.extend(customParseFormat);
+      const onChange = (time, timeString) => {
+      console.log(time, timeString);
+      };
+      const App = () => (
+        <TimePicker onChange={onChange} defaultOpenValue={dayjs('00:00:00', 'HH:mm:ss')} />
+      );
+      export default App;
+
+      createRoot(document.getElementById('container')).render(<Demo />);
+  </script>
 
 </body>
 
