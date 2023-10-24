@@ -138,7 +138,7 @@
             </article><!-- End blog entry -->
             {% endfor %}
 
-            <!-- ===== 分页，但是好像是静态的，没有实现，研究一下怎么实现 =====-->
+            <!-- ===== 分页，但是好像是静态的，没有实现，研究一下怎么实现 ===== -->
             <div class="blog-pagination">
               <ul class="justify-content-center">
                 <li><a href="#">1</a></li>
@@ -194,7 +194,10 @@
                     <div class="modal-body">
 
                     <!-- 一个表单 -->
-                    <form role="form">
+                    <!-- 
+                      修改 urls.py 和 views.py
+                    -->
+                    <form role="form" method="post" action="/blog/">
                       
                       <!-- 输入名称 -->
                       <div class="container">
@@ -203,7 +206,7 @@
                             <p>项目名称</p>
                             <p></p>
                           </label>
-                          <input type="text" class="form-control" id="name" placeholder="请输入名称">
+                          <input type="text" class="form-control" id="name" name="name" placeholder="请输入名称">
                         </div>
                         <p id="name-check"></p>
                       </div>
@@ -215,7 +218,7 @@
                             <p>来源网站</p>
                             <p></p>
                           </label>
-                          <input type="text" class="form-control" id="url" placeholder="请输入url">
+                          <input type="text" class="form-control" id="url" name="url" placeholder="请输入url">
                         </div>
                         <p id="url-check"></p>
                       </div>
@@ -224,7 +227,7 @@
                       <div class="container">
                         <div class="form-group">
                           <label for="inputfile">竞赛图片</label>
-                          <input type="file" id="inputfile">
+                          <input type="file" id="inputfile" name="inputfile">
                           <!-- <p class="help-block">这里是块级帮助文本的实例。</p> -->
                         </div>
                         <p id="photo-check"></p>
@@ -237,7 +240,7 @@
                             <p>参赛人数</p>
                             <p></p>
                           </label>
-                          <input id="number" type="number" value="1" class="form-control"  id="numb" placeholder="请输入参赛人数">
+                          <input id="number" type="number" value="1" class="form-control"  name="number" placeholder="请输入参赛人数">
                           <p id="check-numb"></p>
                         </div>
                       </div>
@@ -255,21 +258,22 @@
                       -->
                       
                       <!-- 单选框 -->
+                      <!-- 以 value 值存入数据库，1代表科研项目，2代表技能竞赛，3代表科创竞赛-->
                       <div class="container">
                         <label for="type">
                           <p>竞赛类别</p>
                           <p></p>    
                         </label>
                         <div class="form-check">
-                          <input type="radio" class="form-check-input" id="radio1" name="optradio" value="option1" checked>科研项目
+                          <input type="radio" class="form-check-input" id="radio1" name="category" value="1" checked>科研项目
                           <label class="form-check-label" for="radio1"></label>
                         </div>
                         <div class="form-check">
-                          <input type="radio" class="form-check-input" id="radio2" name="optradio" value="option2">技能竞赛
+                          <input type="radio" class="form-check-input" id="radio2" name="category" value="2">技能竞赛
                           <label class="form-check-label" for="radio2"></label>
                         </div>
                         <div class="form-check">
-                          <input type="radio" class="form-check-input" id="radio3" name="optradio" value="option3">科创竞赛
+                          <input type="radio" class="form-check-input" id="radio3" name="category" value="3">科创竞赛
                           <label class="form-check-label"></label>
                         </div>
                         <p id="option-check"></p>
@@ -281,7 +285,7 @@
                             <p>报名开始时间</p> 
                             <p></p>
                           </label>
-                          <input type="date" value="2023-10-15" class="form-control" id="start_regi" placeholder="报名开始时间">
+                          <input type="date" value="2023-10-15" class="form-control" id="start_regi" name="start_regi" placeholder="报名开始时间">
                         </div>
                         <p id="content-check"></p>
                       </div>
@@ -293,7 +297,7 @@
                             <p>报名截止时间</p> 
                             <p></p>
                           </label>
-                          <input type="date" value="2023-10-15" class="form-control" id="end_regi" placeholder="报名截止时间">
+                          <input type="date" value="2023-10-15" class="form-control" id="end_regi" name="end_regi" placeholder="报名截止时间">
                         </div>
                         <p id="content-check"></p>
                       </div>
@@ -305,7 +309,7 @@
                             <p>项目开始时间</p> 
                             <p></p>
                           </label>
-                          <input type="date" value="2023-10-15" class="form-control" id="start_compt" placeholder="项目开始时间">
+                          <input type="date" value="2023-10-15" class="form-control" id="start_compt" name="start_compt" placeholder="项目开始时间">
                         </div>
                         <p id="content-check"></p>
                       </div>
@@ -317,16 +321,10 @@
                             <p>项目简介</p>
                             <p></p>
                           </label>
-                          <input type="text" class="form-control" id="intro" placeholder="请输入项目介绍">
+                          <input type="text" class="form-control" id="intro" name="intro" placeholder="请输入项目介绍">
                         </div>
                         <p id="content-check"></p>
                       </div>
-
-                      <!-- 没有实现的时间选择框 -->
-                      <div id="container" style="padding: 24px" />
-                        <script>const mountNode = document.getElementById('container');</script>
-                      
-                      
                       
                       <button type="button" class="btn btn-light" onclick="myFunction()">提交</button>
                       <button type="button" class="btn btn-danger" data-bs-dismiss="modal">关闭</button>
