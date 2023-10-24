@@ -79,7 +79,7 @@
           <li><a href="/index">主页</a></li>
           <li><a href="/blog">科创信息一览</a></li>
         </ol>
-        <h2>创新竞赛1 —— {{ competition.name }}</h2>
+        <h2>创新竞赛{{ competition.id }} —— {{ competition.name }}</h2>
       </div>
     </section><!-- End Breadcrumbs -->
 
@@ -143,11 +143,12 @@
             <article class="entry entry-single">
 
               <div class="entry-img">
-                <img src="{% static 'img/blog/blog-1.jpg' %}" alt="" class="img-fluid">
+                <img src="{{ competition.image.url }}" alt="" class="img-fluid">
+                <!-- <img src="{% static 'img/blog/blog-1.jpg' %}" alt="" class="img-fluid"> -->
               </div>
 
               <h2 class="entry-title">
-                <a href="blog-single.html">创新竞赛1 —— {{ competition.name }}</a>
+                <a href="blog-single.html">创新竞赛{{ competition.id }} —— {{ competition.name }}</a>
               </h2>
 
               
@@ -178,7 +179,7 @@
                     
                     <tr>
                       <td>类型</td>  
-                      <td>{{ obj.type }}</td>
+                      <td>{{ competition.category }}</td>
                     </tr>
                     
                     <tr>
@@ -191,12 +192,12 @@
                     </tr>
                     <tr>
                       <td>团队人数要求</td>  
-                      <td>{{ obj.number }}</td>
+                      <td>{{ competition.number }}</td>
                     </tr>
 
                     <tr>
                       <td>来源链接</td>  
-                      <td>https://www.tiaozhanbei.net</td>
+                      <td>{{ competition.url }}</td>
                     </tr>
                   </tr>
 
@@ -223,7 +224,7 @@
                     你可以在这里交流竞赛讯息，寻找组队伙伴
                   </p>
 
-                  <!-- 这里需要与数据库交互 -->
+                  <!-- 评论1 -->
                   <div id="comment-1" class="comment">
                     <div class="d-flex">
                       <div class="comment-img"><img src="assets/img/competition/1成员1.jpeg" alt=""></div>
@@ -237,6 +238,7 @@
                     </div>
                   </div><!-- End comment #1 -->
 
+                  <!-- 评论2 -->
                   <div id="comment-2" class="comment">
                     <div class="d-flex">
                       <div class="comment-img"><img src="assets/img/competition/1成员2.jpeg" alt=""></div>
@@ -251,32 +253,31 @@
                     </div>
                   </div><!-- End comment #1 -->
 
-                  <!-- 发布讨论 暂时不确定需要哪些信息 -->
+                  <!-- 测试与数据库交互功能 -->
+                  {% for discussion in discussions %}
+                  <div id="comment-2" class="comment">
+                    <div class="d-flex">
+                      <div class="comment-img"><img src="{{ discussion.user.profile }}" alt=""></div>
+                      <div>
+                        <!-- 链接到个人主页 -->
+                        <h5> <a href="">{{ discussion.user.user_name }}</a> </h5>
+                        <time datetime="2023-10-07">{{ discussion.discuss_time }}</time>
+                        <p>
+                          {{ discussion.content }}
+                        </p>
+                      </div>
+                    </div>
+                  </div><!-- End comment #1 -->
+                  {% endfor %}
+
                   <div class="container">
                     <div style="font-weight: 800; font-size: 20px ">
                       <p></p>
                       发布评论
                       <p></p>
                     </div>
-                    <form action="">
-                      <!--
-                        <div class="row">
-                        <div class="col-md-6 form-group">
-                          <input name="name" type="text" class="form-control" placeholder="Your Name*">
-                        </div>
-                        <div class="col-md-6 form-group">
-                          <input name="email" type="text" class="form-control" placeholder="Your Email*">
-                        </div>
-                      </div>
-                      -->
-                      <!--
-                        <div class="row">
-                          <div class="col form-group">
-                            <input name="website" type="text" class="form-control" placeholder="Your Website">
-                          </div>
-                        </div>
-                      -->
-                      
+                    <form action="/blog-single/{{ competition.id }}/" method="post">
+                      {% csrf_token %}
                       <div class="row">
                         <div class="col form-group">
                           <textarea name="comment" class="form-control" placeholder="留下你的评论*"></textarea>
@@ -284,10 +285,9 @@
                       </div>
                       <p></p>
                       <button type="submit" class="btn btn-dark">发布</button>
-
                     </form>
-
                   </div>
+                  
 
                 </div><!-- End blog comments -->
                 
