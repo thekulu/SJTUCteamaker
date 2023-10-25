@@ -87,35 +87,7 @@
 
           <!-- 栏目一：竞赛列表 -->
           <div class="col-lg-8 entries">
-            <!-- 竞赛一 -->
-            <article class="entry">
-              <!-- ===== 标题 ===== -->
-              <h2 class="entry-title">
-                <a href="/blog-single/1/">“挑战杯” 全国大学生课外学术科技作品竞赛</a>
-              </h2>
-
-              <!-- <div class="entry-meta">
-                <ul>
-                  <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="/blog-single">John Doe</a></li>
-                  <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="/blog-single"><time datetime="2020-01-01">Jan 1, 2020</time></a></li>
-                  <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="/blog-single">12 Comments</a></li>
-                </ul>
-              </div> -->
-
-              <div class="entry-content">
-                <p>
-                  <!-- ===== 正文描述 ===== -->
-                  “挑战杯” 系列竞赛被誉为中国大学生学术科技 “奥林匹克” ，是国内大学生最关注最热门的全国性竞赛，也是全国最具代表性、权威性、示范性、导向性的大学生竞赛。
-                  该竞赛每两年举办一次，旨在鼓励大学生勇于创新、迎接挑战的精神，培养跨世纪创新人才。
-                </p>
-                <!-- ===== 超链接 ===== -->
-                <div class="read-more">
-                  <a href="/blog-single/1/">了解更多</a>
-                </div>
-              </div>
-
-            </article><!-- End blog entry -->
-            
+           
             <!-- 测试与数据库交互功能 -->
             {% for obj in competition %}
             <article class="entry">
@@ -131,6 +103,10 @@
                 </p>
                 <!-- ===== 超链接 ===== -->
                 <div class="read-more">
+                  <a href="/competition/delete/?nid={{ obj.id }}">删除竞赛</a>
+                  <!-- ====== 记删除竞赛功能的实现 ====== -->
+                  <!-- urls.py 和 views.py 中均有修改 -->
+                  
                   <a href="/blog-single/{{ obj.id }}/">了解更多</a>
                 </div>
               </div>
@@ -138,7 +114,7 @@
             </article><!-- End blog entry -->
             {% endfor %}
 
-            <!-- ===== 分页，但是好像是静态的，没有实现，研究一下怎么实现 ===== -->
+            <!-- ===== 分页，但是好像是静态的，没有实现，研究一下怎么实现 =====-->
             <div class="blog-pagination">
               <ul class="justify-content-center">
                 <li><a href="#">1</a></li>
@@ -193,12 +169,9 @@
                     <!-- 模态主体 -->
                     <div class="modal-body">
 
-                    <!-- 一个表单 -->
-                    <!-- 
-                      修改 urls.py 和 views.py
-                    -->
-                    <form role="form" method="post" action="/blog/">
-                      
+                    <!-- ====== 一个表单 ===== -->
+                    <form role="form" method="post" action="/competition/add/" enctype="multipart/form-data">
+                      {% csrf_token %}
                       <!-- 输入名称 -->
                       <div class="container">
                         <div class="form-group">
@@ -241,7 +214,6 @@
                             <p></p>
                           </label>
                           <input id="number" type="number" value="1" class="form-control"  name="number" placeholder="请输入参赛人数">
-                          <p id="check-numb"></p>
                         </div>
                       </div>
 
@@ -302,7 +274,7 @@
                         <p id="content-check"></p>
                       </div>
 
-                      <!-- 项目开始时间 -->
+                      <!-- 竞赛开始时间 -->
                       <div class="container">
                         <div class="form-group">
                           <label for="start_compt">
@@ -326,7 +298,7 @@
                         <p id="content-check"></p>
                       </div>
                       
-                      <button type="button" class="btn btn-light" onclick="myFunction()">提交</button>
+                      <button class="btn btn-light" type = "submit">提交</button>
                       <button type="button" class="btn btn-danger" data-bs-dismiss="modal">关闭</button>
                     
                     </form>
@@ -412,16 +384,38 @@
   <!-- 表单输入检查 -->
   <script>
     function myFunction() {
-      // 获取 id = "numb" 的输入字段的值
-      let x = document.getElementById("numb").value;
-      // 如果 x 不是数字或小于 1 或大于 10
-      let text;
-      if (isNaN(x) || x < 1 || x > 10) {
-        text = "输入无效";
-      } else {
-        text = "输入没问题";
-      }
-      document.getElementById("demo").innerHTML = text;
+      // // 获取 id = "numb" 的输入字段的值
+      // let x = document.getElementById("numb").value;
+      // // 如果 x 不是数字或小于 1 或大于 10
+      // let text;
+      // if (isNaN(x) || x < 1 || x > 10) {
+      //   text = "输入无效";
+      // } else {
+      //   text = "输入没问题";
+      // }
+      // document.getElementById("demo").innerHTML = text;
+
+      // 创建一个新的FormData对象，并添加表单数据
+      let formData = new FormData();
+        formData.append('numb', x);
+
+        // 创建一个新的XMLHttpRequest对象，并设置请求为POST，并设置目标URL
+        let xhr = new XMLHttpRequest();
+        xhr.open('POST', '/competition/add/', true);
+
+        // 设置请求的回调函数
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                // 请求成功，可以在这里处理成功后的逻辑
+                console.log('表单提交成功');
+            } else {
+                // 请求失败，可以在这里处理失败后的逻辑
+                console.log('表单提交失败');
+            }
+        };
+
+
+      alert("表单提交成功！");
 
   }
   </script>

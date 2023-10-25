@@ -1,6 +1,9 @@
 from django.shortcuts import render, HttpResponse, redirect
 from django.shortcuts import render, get_object_or_404
 from .models import User, Competition, Team, Discussion
+from django.contrib import messages
+from django.core.files.storage import default_storage
+from django.core.files.base import ContentFile
 
 def new_competition():
     new_competition = Competition(
@@ -16,41 +19,88 @@ def home(request):
     return render(request, "home.html")
 
 def blog(request):
-    if request.method == 'POST':
+    # if request.method == 'POST':
 
-        # 获取POST数据
-        name = request.POST.get('name')
-        url = request.POST.get('url')
-        # 获取其他表单字段
-        start_regi = request.POST.get('start_regi')
-        end_regi = request.POST.get('end_regi')
-        start_compt = request.POST.get('start_compt')
-        number = request.POST.get('number')
-        intro = request.POST.get('intro')
-        category = request.POST.get('category')
-
-
-        # 检查 content 是否存在
-        if name:
-            # 创建 new_competition 对象并将其保存到数据库
-            new_competition = Competition(
-                    name=name,
-                    url=url,
-                    start_regi=start_regi,
-                    end_regi=end_regi,
-                    start_compt=start_compt,
-                    number=number,
-                    intro=intro,
-                    category=category
-                )
-            new_competition.save()
-
-            # 返回响应，可以是重定向或其他响应
-            return HttpResponse('讨论已发布')
+    #     # 获取POST数据
+    #     name = request.POST.get('name')
+    #     url = request.POST.get('url')
+    #     # 获取其他表单字段
+    #     start_regi = request.POST.get('start_regi')
+    #     end_regi = request.POST.get('end_regi')
+    #     start_compt = request.POST.get('start_compt')
+    #     number = request.POST.get('number')
+    #     intro = request.POST.get('intro')
+    #     category = request.POST.get('category')
 
 
+    #     # 检查 content 是否存在
+    #     if name:
+    #         # 创建 new_competition 对象并将其保存到数据库
+    #         new_competition = Competition(
+    #                 name=name,
+    #                 url=url,
+    #                 start_regi=start_regi,
+    #                 end_regi=end_regi,
+    #                 start_compt=start_compt,
+    #                 number=number,
+    #                 intro=intro,
+    #                 category=category
+    #             )
+    #         new_competition.save()
+
+    #         # 返回响应，可以是重定向或其他响应
+    #         return HttpResponse('讨论已发布')
     competition = Competition.objects.all()  # 查询数据库中的所有Discussion对象
     return render(request, "blog.html",  {'competition': competition})
+
+# 新建竞赛
+# path('competition/add/', views.competition_add)
+# from django.contrib import messages 增加弹窗功能
+def competition_add(request):
+    # 默认为 POST 表单    
+    name = request.POST.get("name")
+    url = request.POST.get("url")
+    inputfile = request.FILES.get('inputfile')
+    number = request.POST.get("number")
+    
+    # 竞赛类别单选项
+    category = request.POST.get("category")
+
+    start_regi = request.POST.get("start_regi")
+    end_regi = request.POST.get("end_regi")
+    start_compt = request.POST.get("start_compt")
+    intro = request.POST.get("intro")
+
+    # 处理上传的文件
+    if inputfile:
+        # 保存文件到media目录中
+        file_name = default_storage.save('competition_images/' + inputfile.name, ContentFile(inputfile.read()))
+
+        # 获取文件的URL
+        file_url = 'competition_images/' + inputfile.name
+
+    Competition.objects.create(name = name,
+                                url = url, 
+                                image = file_url,
+                                number = number,
+                                category = category,
+                                start_regi = start_regi,
+                                end_regi = end_regi,
+                                start_compt = start_compt,
+                                intro = intro
+                                )
+    # return HttpResponse("添加成功")
+    messages.error(request, '添加成功')
+    return redirect("/blog/") # urls.py 中的 blog.html 地址
+
+# 删除竞赛
+# path('competition/delete/', homeviews.competition_delete),
+def competition_delete(request):
+    nid = request.GET.get("nid")
+    Competition.objects.filter(id=nid).delete()
+    # return HttpResponse("删除成功")
+    messages.error(request, '删除成功')
+    return redirect("/blog/")
 
 def blogs(request, competition_id):
     if request.method == 'POST':
