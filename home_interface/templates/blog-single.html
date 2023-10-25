@@ -275,32 +275,14 @@
                   </div><!-- End comment #1 -->
                   {% endfor %}
 
-                  <!-- 发布讨论 暂时不确定需要哪些信息 -->
                   <div class="container">
                     <div style="font-weight: 800; font-size: 20px ">
                       <p></p>
                       发布评论
                       <p></p>
                     </div>
-                    <form action="">
-                      <!--
-                        <div class="row">
-                        <div class="col-md-6 form-group">
-                          <input name="name" type="text" class="form-control" placeholder="Your Name*">
-                        </div>
-                        <div class="col-md-6 form-group">
-                          <input name="email" type="text" class="form-control" placeholder="Your Email*">
-                        </div>
-                      </div>
-                      -->
-                      <!--
-                        <div class="row">
-                          <div class="col form-group">
-                            <input name="website" type="text" class="form-control" placeholder="Your Website">
-                          </div>
-                        </div>
-                      -->
-                      
+                    <form action="/blog-single/{{ competition.id }}/" method="post">
+                      {% csrf_token %}
                       <div class="row">
                         <div class="col form-group">
                           <textarea name="comment" class="form-control" placeholder="留下你的评论*"></textarea>
@@ -308,10 +290,9 @@
                       </div>
                       <p></p>
                       <button type="submit" class="btn btn-dark">发布</button>
-
                     </form>
-
                   </div>
+                  
 
                 </div><!-- End blog comments -->
                 

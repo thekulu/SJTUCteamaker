@@ -5,15 +5,6 @@ from django.contrib import messages
 from django.core.files.storage import default_storage
 from django.core.files.base import ContentFile
 
-def new_competition():
-    new_competition = Competition(
-        name="Competition 1 from sql",
-        start_date="2023-11-01",
-        end_date="2023-11-30",
-        description="Description of the new competition."
-    )
-    new_competition.save()
-
 # Create your views here.
 def home(request):
     return render(request, "home.html")
