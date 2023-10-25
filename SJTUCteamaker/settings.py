@@ -84,7 +84,7 @@ WSGI_APPLICATION = 'SJTUCteamaker.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'nis3368',
+        'NAME': 'teammaker',
         'USER': 'root',
         'PASSWORD': '2002',
         'HOST': '127.0.0.1',
@@ -132,3 +132,6 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# 设置媒体文件的URL
+MEDIA_URL = '/media/'
