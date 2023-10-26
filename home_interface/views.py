@@ -96,8 +96,8 @@ def competition_delete(request):
 def blogs(request, competition_id):
     if request.method == 'POST':
         # 获取当前登录用户
-        # user = request.user
-        user = User.objects.first()
+        user = request.user
+        # user = User.objects.first()
         competition = Competition.objects.get(pk=competition_id)
 
         # 获取POST数据
