@@ -28,7 +28,22 @@ def custom_login(request):
     if request.method == 'POST':
         user_id = request.POST.get('user_id')
         user_password = request.POST.get('user_password')
+        user_password_a = request.POST.get('user_password_a')
+        # print("if",user_password_a)
+        if user_password_a is not None:
+            if user_password == user_password_a:
+                new_user = User(
+                    user_name="New User " + user_id,
+                    user_id=user_id,  # 你需要选择一个唯一的学号
+                    user_password=user_password,
+                    profile="images/1成员1.jpeg",  # 上传的头像文件路径
+                    bio="添加你的介绍",
+                    major="添加你的专业"
+                )
+                new_user.save()
+        
         user = authenticate(request, user_id=user_id, user_password=user_password)
+        print(user)
 
         if user is not None:
             login(request, user)
