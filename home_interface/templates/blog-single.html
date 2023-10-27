@@ -172,6 +172,8 @@
                     <tr>
                       <td>竞赛类型</td>  
                       <td>{{ competition.category }}</td>
+
+                      <!-- 需要实现文本展示，可以用一个 if 判断实现 -->
                     </tr>
                     
                     <tr>
@@ -355,20 +357,20 @@
                     </tr>
                     {% endfor %}
 
-                    <tr>
+                    <!-- <tr>
                       <th scope="row"> 1 </th>
                       <td><a href=""> 超能战队 </a> </td>
                       <td><a href=""><img src="assets/img/competition/1成员4.jpeg" alt="" width="30" height="30" > 花心超人 </a> </td>
                       <td> 这里是队伍成员 </td>
                       <td> 这里是队伍信息 </td>
                       <td> 
-                        <!-- 模态 弹窗 -->
+                        
                         <button type="button" class="btn btn-dark btn-sm" data-bs-toggle="modal" data-bs-target="#myModal-1" 
                         href="/blog-single/{{ competition.id }}/join/{{ obj.id }}/">加入</button>
                         <button type="button" class="btn btn-light btn-sm" data-bs-toggle="modal" data-bs-target="#myModal-2"
                         href="">解散</button>
                       </td>
-                    </tr>
+                    </tr> -->
                   </tbody>
                 </table>
               </div>
@@ -436,8 +438,10 @@
                   <p>根据<b>队伍名</b>或者<b>队长名</b>搜索队伍</p>
                   <p></p>
                   <div class="sidebar-item search-form">
-                    <form action="">
-                      <input type="text">
+                    <form method="get" action="/blog-single/team_search/{{ competition.id }}">
+                      <!-- 提交的结果将被发送给 /blog-single/team_search/{{ competition.id }} 这个 URL -->
+                      <input type="text" name="input" >
+                      <!-- name = input-->
                       <button type="submit"><i class="bi bi-search"></i></button>
                     </form>
                   </div><!-- End sidebar search formn-->

@@ -94,6 +94,20 @@ def competition_delete(request):
     messages.error(request, '删除成功')
     return redirect("/blog/")
 
+# 依据文本输入搜索竞赛
+# path('blog/search/', homeviews.blog_search),
+def blog_search(request):
+    # 默认为 GET
+    input = request.GET.get('input')
+    error_msg = ''
+
+    if not input:
+        error_msg = '请输入关键词'
+        return render(request, 'blog.html', {'error_msg': error_msg})
+
+    competition = Competition.objects.filter(name = input)
+
+    return render(request, "blog.html",  {'error_msg': error_msg, 'competition': competition})
 
 # 发布评论
 def blogs(request, competition_id):
@@ -168,6 +182,24 @@ def team_add(request, competition_id):
     discussions = Discussion.objects.filter(competition=competition)
     return render(request, 'blog-single.html', {'competition': competition, 'discussions': discussions, 'teams': teams})
 
+# 依据标签输入搜索竞赛
+# path('competition/delete/', homeviews.competition_search),
+def competition_search(request, type):
+    competition = Competition.objects.filter(category=type)
+    # return HttpResponse("删除成功")
+
+    return render(request, "blog.html",  {'competition': competition})
+
+def team_search(request, competition_id):
+    # print("team_search")
+    competition = Competition.objects.get(pk=competition_id)
+    input = request.GET.get('input')
+    teams = Team.objects.filter(competition=competition, name=input)
+    print(teams)
+    discussions = Discussion.objects.filter(competition=competition)
+    return render(request, 'blog-single.html', {'competition': competition, 'discussions': discussions, 'teams': teams})
+    # 希望跳转到界面2：团队列表
+    # 默认为 GET
 
 # # 删除成员
 # def member_delete(request, nid):
