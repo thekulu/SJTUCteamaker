@@ -16,81 +16,136 @@
     <link href="{% static 'vendor/owl.carousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
     <link href="{% static 'vendor/aos/aos.css' %}" rel="stylesheet">
 
-    <link href="{% static 'css/style2.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
 
-    <link rel="stylesheet" href="{% static 'personal.css' %}">
+    <link rel="stylesheet" href="{% static 'css/personal2.css' %}">
 </head>
 
 <body>
-    <header id="header">
-        <div class="container d-flex">
-    
-          <div class="logo mr-auto">
-            <a href="/index"></a>
-            <span id="easter_egg3" class="text-light" style="font-size: 2rem;"><a href="/index">竞赛组队</a></span>
-          </div>
-    
-          <nav class="nav-menu d-none d-lg-block">
-            <ul>
-              <li class="active"><a href="/index">欢迎 Home</a></li> 
-              <li><a href="/home">竞赛项目</a></li>
-              <li><a href="#team">讨论区</a></li>
-              <li><a href="#faq">Q&A</a></li>
-              <li><a href="/personal">个人主页</a></li>
-              <li><a href="/login">登陆login/登出logout</a></li>
-    
-            </ul>
-          </nav><!-- .nav-menu -->
-    
-        </div>
-      </header><!-- End Header -->
+  <header id="header" class="d-flex align-items-center">
+    <div class="container d-flex align-items-center justify-content-between">
 
-    <div class="container">  
-      <!-- 侧边导航栏 -->
-      <div class="sidenav">
-        <a href="/personal">个人资料</a>
-        <a href="/team_created">创建的队伍</a>
-        <a href="/team_join">加入的队伍</a>
-        <a href="/team_apply">申请的队伍</a>
+      <div class="logo">
+        <h1><a href="/index">竞赛组队网站</a></h1>
+        <!-- Uncomment below if you prefer to use an image logo -->
+        <!-- <a href="index"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
       </div>
+
+      <nav id="navbar" class="navbar">
+        <ul>
+          
+          <li><a class="nav-link scrollto " href="/index">欢迎 Home</a></li>
+          <li><a class="nav-link scrollto" href="/blog">竞赛大厅</a></li>
+          <li><a class="nav-link scrollto" href="/blog">讨论区</a></li>
+          <li><a class="nav-link scrollto " href="/Q&A">Q & A</a></li>
+          <li><a class="nav-link scrollto" href="/personal">个人主页</a></li>
+          <li><a href="/login">登陆login/登出logout</a></li>
+        </ul>
+      </nav><!-- .navbar -->
+
+    </div>
+  </header><!-- End Header -->
+  <!--表单提交,update_profile修改为实际的视图函数-->
+  <form action="/personal/add/" method="post">
+    {% csrf_token %}
+    <div class="container">
+      <!--数据库交互-->
+      <!-- 侧边导航栏 -->
+      <aside class="sidenav">
+        <!--获取头像-->
+        <div class="avatar">
+          {% if request.user.profile %}
+            <img src="{{ user.profile.url }}" alt="头像" />
+          {% else %}
+          <!--修改为实际默认头像的路径-->
+          <img src="{% static 'path/avatar.png' %}" alt="默认头像" />
+          {% endif %}
+        </div>
+        <input type="file" id="uploadInput" accept="image/*" style="display: none;" />
+        <!--从本地上传图片-->
+        <button id="changeBtn" class="editImg" name="profile"></button>
+        <nav class="nav">
+          <a href="/personal">个人资料</a>
+          <a href="/team_created">创建的队伍</a>
+          <a href="/team_join">加入的队伍</a>
+          <a href="/team_apply">申请的队伍</a>
+        </nav>
+      </aside>
+    </div>
       <!-- 内容区 -->
       <div class="content">
-        <div class="profile">
-          <img src="{% static 'images/头像.jpeg' %}" alt="头像" class="avatar">
-          <div class="profile-info">
-            <span class="nickname">小心超人</span>
-            <span class="idnum">ID:123456</span>
-          </div>
-        </div>
-        <button class="edit-button">编辑资料</button>
-        <table class="personal-table">
-          <tr>
-            <td class="personal-info1">
-              年级：</td>
-            <td class="personal-info">
-              21级</td>
-          </tr>
-          <tr>
-            <td class="personal-info1">
-              专业：</td>
-            <td class="personal-info">
-              信息安全</td>
-          </tr>
-          <tr>
-            <td class="personal-info1">
-              邮箱：</td>
-            <td class="personal-info">
-              example@sjtu.edu.cn</td>
-          </tr>
-          <tr>
-            <td class="personal-info1">
-              个人简介：</td>
-            <td class="personal-info">
-              这是我的个人简介</td>
-          </tr>
+        <div class="wrap">
+          <h2 class="introtitle">个人资料</h2>
+          <div class="row">
+            <div class="col-l-4">
+              <table class="personal-table">
+                <tr>
+                  <td class="personal-info1">
+                    昵称：</td>
+                  <td class="personal-info">
+                    <input type="text" name="user_name" value="{{user.user_name}}"></td>
+                </tr>
+                <tr>
+                  <td class="personal-info1">
+                    年级：</td>
+                  <td class="personal-info">
+                    <input type="text" name="grade" value="{{user.grade}}"></td>
+                </tr>
+                <tr>
+                  <td class="personal-info1">
+                    邮箱：</td>
+                  <td class="personal-info">
+                    <input type="text" name="email" value="{{user.email}}"></td>
+                </tr>
+              </table>
+            </div>
+            <div class="col-l-4">
+              <table class="personal-table">
+                <tr>
+                  <td class="personal-info1">
+                    ID：</td>
+                  <td class="personal-info">
+                    <input type="text" name="user_id" value="{{user.user_id}}"></td>
+                </tr>
+                <tr>
+                  <td class="personal-info1">
+                    专业：</td>
+                  <td class="personal-info">
+                    <input type="text" name="major" value="{{user.major}}"></td>
+                </tr>
+              </table>
+            </div>
+            <div class="intro">
+              <div class="intro1">
+                  个人简介：
+              </div>
+              <div class="personal-info">
+                <textarea name="bio" rows="3" cols="71" placeholder="在这里填写个人简介">{{user.bio}}</textarea>
+              </div>
+            </div>
       </div>
+      <button type="submit" class="subBtn">保存更改</button>
+    <div class="imgcontainer"></div>
     </div>
+    </div>
+  </form>
+    <script>
+      document.getElementById("changeBtn").addEventListener("click", function() {
+        document.getElementById("uploadInput").click();
+      });
+  
+      document.getElementById("uploadInput").addEventListener("change", function(event) {
+        var file = event.target.files[0];
+        var reader = new FileReader();
+        reader.onload = function(e) {
+          var imageSrc = e.target.result;
+          document.querySelector(".avatar img").src = imageSrc;
+        };
+        reader.readAsDataURL(file);
+      });
+    </script>
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>

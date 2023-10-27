@@ -9,7 +9,6 @@
 
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
-    <!-- Vendor CSS Files -->
     <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
     <link href="{% static 'vendor/icofont/icofont.min.css' %}" rel="stylesheet">
     <link href="{% static 'vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
@@ -17,44 +16,54 @@
     <link href="{% static 'vendor/owl.carousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
     <link href="{% static 'vendor/aos/aos.css' %}" rel="stylesheet">
 
-    <!-- Template Main CSS File -->
-    <link href="{% static 'css/style2.css' %}" rel="stylesheet">
-    <link rel="stylesheet" href="{% static 'personal.css' %}">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+
+    <link rel="stylesheet" href="{% static 'css/personal2.css' %}">
     <link rel="stylesheet" href="{% static 'team_created.css' %}">
 </head>
 
 <body>
-    <header id="header">
-        <div class="container d-flex">
-    
-          <div class="logo mr-auto">
-            <a href="index.html"></a>
-            <span id="easter_egg3" class="text-light" style="font-size: 2rem;"><a href="index.html">竞赛组队</a></span>
-          </div>
-    
-          <nav class="nav-menu d-none d-lg-block">
-            <ul>
-              <li class="active"><a href="/index">欢迎 Home</a></li> 
-              <li><a href="/home">竞赛项目</a></li>
-              <li><a href="#team">讨论区</a></li>
-              <li><a href="#faq">Q&A</a></li>
-              <li><a href="/personal">个人主页</a></li>
-              <li><a href="/login">登陆login/登出logout</a></li>
-    
-            </ul>
-          </nav><!-- .nav-menu -->
-    
-        </div>
-      </header><!-- End Header -->
+  <!-- ======= Header ======= -->
+  <!-- ======= 导航 ====== -->
+  <header id="header" class="d-flex align-items-center">
+    <div class="container d-flex align-items-center justify-content-between">
 
-    <div class="container">  
-      <!-- 侧边导航栏 -->
-      <div class="sidenav">
+      <div class="logo">
+        <h1><a href="/index">竞赛组队网站</a></h1>
+        <!-- Uncomment below if you prefer to use an image logo -->
+        <!-- <a href="index"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+      </div>
+
+      <nav id="navbar" class="navbar">
+        <ul>
+          
+          <li><a class="nav-link scrollto " href="/index">欢迎 Home</a></li>
+          <li><a class="nav-link scrollto" href="/blog">竞赛大厅</a></li>
+          <li><a class="nav-link scrollto" href="/blog">讨论区</a></li>
+          <li><a class="nav-link scrollto " href="/Q&A">Q & A</a></li>
+          <li><a class="nav-link scrollto" href="/personal">个人主页</a></li>
+          <li><a href="/login">登陆login/登出logout</a></li>
+        </ul>
+      </nav><!-- .navbar -->
+
+    </div>
+  </header><!-- End Header -->
+
+  
+  <div class="container">  
+    <!-- 侧边导航栏 -->
+    <aside class="sidenav">
+      <div class="avatar">
+        <img src="{{ user.profile.url }}" alt="头像" />
+      </div>
+      <nav class="nav">
         <a href="/personal">个人资料</a>
         <a href="/team_created">创建的队伍</a>
         <a href="/team_join">加入的队伍</a>
         <a href="/team_apply">申请的队伍</a>
-      </div>
+      </nav>
+    </aside>
+  </div>
       <!-- 内容区 -->
     <div class="team_table">
         <h2><center><strong>创建的队伍</strong></center></h2>
@@ -64,49 +73,30 @@
         <div class="table_container">
           <table>
             <tr>
-              <td class="small-cell">队伍ID</td>
               <td class="middle-cell">队伍名称</td>
               <td class="middle-cell">竞赛项目</td>
               <td class="large-cell">队伍成员</td>
               <td class="small-cell">选项</td>
             </tr>
+            {% for team in team %}
             <tr>
-              <td class="small-cell">001</td>
-              <td class="middle-cell">开心联盟</td>
-              <td class="middle-cell">争霸赛</td>
+              <td class="middle-cell">{{ team.name }}</td>
+              <td class="middle-cell">{{ team.competition }}</td>
               <td class="large-cell">
-                <div class="member-avatar">
-                  <img src="images/1成员1.jpeg" alt="成员1头像">
-                </div>
-                <div class="member-avatar">
-                  <img src="images/1成员2.jpeg" alt="成员2头像">
-                </div>
-                <div class="member-avatar">
-                  <img src="images/1成员3.jpeg" alt="成员3头像">
-                </div>
-                <div class="member-avatar">
-                  <img src="images/1成员4.jpeg" alt="成员4头像">
-                </div>
+                <ul>
+                  {% for member in team.members.all %}
+                  <li>
+                      <img src="{{ member.profile.url }}" alt="{{ member.name }}" class="member-avatar">
+                  </li>
+                  {% endfor %}
+                </ul>
               </td>
               <td class="small-cell">
                 <button class="option-button">解散队伍</button>
                 <button class="option-button">删除队员</button>
               </td>
             </tr>
-            <tr>
-              <td class="small-cell">002</td>
-              <td class="middle-cell">友谊第一</td>
-              <td class="middle-cell">达人杯</td>
-              <td class="large-cell">
-                <div class="member-avatar">
-                  <img src="images/2成员1.jpeg" alt="成员1头像">
-                </div>
-              </td>
-              <td class="small-cell">
-                <button class="option-button">解散队伍</button>
-                <button class="option-button">删除队员</button>
-              </td>
-            </tr>
+            {% endfor %}
           </table>
         </div>
     </div>
