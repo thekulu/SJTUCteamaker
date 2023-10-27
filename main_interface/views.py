@@ -35,11 +35,11 @@ def custom_login(request):
             return redirect('/personal/')  # 重定向到登录后的页面
     return render(request, 'login.html')
 
-@login_required(login_url='/login')
-
 # Create your views here.
 def index(request):
     return render(request, "index.html")
+
+# @login_required(login_url='/login')
 
 def personal(request):
     return render(request, "personal.html")

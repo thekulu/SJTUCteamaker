@@ -10,43 +10,52 @@
   <meta content="竞赛组队" name="keywords">
   <meta name="Description" content="浏览，发布竞赛组队信息。让你的竞赛不再孤单">
 
+    <!-- Favicons -->
+    <link href="{% static 'img/favicon.png' %}" rel="icon">
+    <link href="{% static 'img/apple-touch-icon.png' %}" rel="apple-touch-icon">
+
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
   <!-- Vendor CSS Files -->
+
+  <link href="{% static 'vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
   <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
   <link href="{% static 'vendor/icofont/icofont.min.css' %}" rel="stylesheet">
-  <link href="{% static 'vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
-  <link href="{% static 'vendor/venobox/venobox.css' %}" rel="stylesheet">
-  <link href="{% static 'vendor/owl.carousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+  <!--<link href="{% static 'vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet"> -->
+  <!--<link href="{% static 'vendor/venobox/venobox.css' %}" rel="stylesheet"> -->
   <link href="{% static 'vendor/aos/aos.css' %}" rel="stylesheet">
 
   <!-- Template Main CSS File -->
-  <link href="{% static 'css/style2.css' %}" rel="stylesheet">
+  <link href="{% static 'css/style.css' %}" rel="stylesheet">
 </head>
 
 <body>
 
   <!-- ======= Header ======= -->
-  <header id="header">
-    <div class="container d-flex">
+  <!-- ======= Header ======= -->
+  <header id="header" class="d-flex align-items-center">
+    <div class="container d-flex align-items-center justify-content-between">
 
-      <div class="logo mr-auto">
-        <a href="/index"></a>
-        <span id="easter_egg3" class="text-light" style="font-size: 2rem;"><a href="/index">竞赛组队</a></span>
+      <div class="logo">
+        <h1><a href="index.html">竞赛组队网站</a></h1>
+        <!-- Uncomment below if you prefer to use an image logo -->
+        <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
       </div>
 
-      <nav class="nav-menu d-none d-lg-block">
+      <nav id="navbar" class="navbar">
         <ul>
-          <li class="active"><a href="/index">欢迎 Home</a></li> 
-          <li><a href="/home">竞赛项目</a></li>
-          <li><a href="#team">讨论区</a></li>
-          <li><a href="#faq">Q&A</a></li>
-          <li><a href="/personal">个人主页</a></li>
-          <li><a href="/login">登陆login/登出logout</a></li>
-
+          
+          <li><a class="nav-link scrollto " href="/index/">欢迎 Home</a></li>
+          <li><a class="nav-link scrollto" href="/blog/">竞赛大厅</a></li>
+          <li><a class="nav-link scrollto" href="/blog/">讨论区</a></li>
+          <li><a class="nav-link scrollto " href="/Q&A/">Q & A</a></li>
+          <li><a class="nav-link scrollto" href="/personal/">个人主页</a></li>
+          <li><a href="/login/">登陆login/登出logout</a></li>
         </ul>
-      </nav><!-- .nav-menu -->
+      </nav><!-- .navbar -->
 
     </div>
   </header><!-- End Header -->
@@ -61,7 +70,6 @@
   </section><!-- End Hero -->
 
   <main id="main">
-
     <!-- ======= Why Us Section ======= -->
     <section id="why-us" class="why-us">
       <div class="container">
@@ -74,7 +82,7 @@
                 你能找到志同道合的小伙伴<br>
               </p>
               <div class="text-center">
-                <a href="/login" class="more-btn">创建账号/登陆<i class="bx bx-chevron-right"></i></a>
+                <a href="/login/" class="more-btn">创建账号/登陆<i class="bx bx-chevron-right"></i></a>
               </div>
             </div>
           </div>
@@ -97,7 +105,7 @@
                 </div>
                 <div class="col-xl-4 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="300">
                   <div class="icon-box mt-4 mt-xl-0">
-                    <i class="bx bx-gift"></i>
+                    <i class="bx bx-images"></i>
                     <h4>讨论区</h4>
                     <p>一个人太无聊了？不用担心，你可以在讨论区和<b>其他小伙伴</b>进行讨论</p>
                   </div>
@@ -111,19 +119,66 @@
     </section><!-- End Why Us Section -->
 
   </main><!-- End #main -->
-  
-  <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
-  <script src="{% static 'vendor/jquery.easing/jquery.easing.min.js' %}"></script>
-  <script src="{% static 'vendor/php-email-form/validate.js' %}"></script>
-  <script src="{% static 'vendor/jquery-sticky/jquery.sticky.js' %}"></script>
-  <script src="{% static 'vendor/venobox/venobox.min.js' %}"></script>
-  <script src="{% static 'vendor/owl.carousel/owl.carousel.min.js' %}"></script>
-  <script src="{% static 'vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+  <!-- ======= Footer ======= -->
+  <!-- ======= 网页尾 ======= -->
+  <footer id="footer">
+
+    <!-- second part : icons -->
+    <div id="footer_icon_container">
+      <div class="homepage_footer_icons mail_white_icon" onclick="window.open('mailto:yum001@ucsd.edu')">
+        <div id="homepage_footer_widget_mail" class="homepage_footer_widgets">
+        </div>
+      </div>
+      <div class="homepage_footer_icons github_black_icon" onclick="window.open ('https://github.com/YueqianMa/Unicode_Hackathon')">
+        <div id="homepage_footer_widget_github" class="homepage_footer_widgets">
+        </div>
+      </div>
+
+      <div class="homepage_footer_icons green_icon" onmouseover="showImg('wechat')" onmouseout="hideImg('wechat')">
+        <div id="homepage_footer_widget_wechat" class="homepage_footer_widgets">
+          <img id="wechat" src="{% static '/img/icons/wechatQR3.jpg' %}" style="opacity: 1; z-index: 1;">
+          <!-- 这个图片没有插入成功 -->
+        </div>
+      </div>
+
+      <div class="homepage_footer_icons facebook_blue_icon" onclick="window.open ('https://www.facebook.com')">
+        <div id="homepage_footer_widget_facebook" class="homepage_footer_widgets">
+        </div>
+      </div>  
+
+      <div class="homepage_footer_icons ins_pink_icon" onclick="window.open('https://www.instagram.com')">
+        <div id="homepage_footer_widget_instagram" class="homepage_footer_widgets">
+        </div>
+      </div>
+    </div>
+
+
+
+      <div class="mr-lg-auto text-center text-lg-left"  style="text-align: center;">
+        <div class="copyright" align="center">
+            Copyright &copy; <script>document.write(new Date().getFullYear());</script> <strong>1kM</strong> All rights reserved.
+        </div>
+        <div style="opacity: 0.3;" align="center">
+            This template is made with by <a href="https://bootstrapmade.com/" target="_blank" class="text-primary">BootstrapMade</a>
+        </div>
+        <p> </p>
+      </div>
+
+
+
+
+  </footer><!-- End Footer -->
+
+
   <script src="{% static 'vendor/aos/aos.js' %}"></script>
-  <script src="{% static 'js/main2.js' %}"></script>
+  <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'vendor/glightbox/js/glightbox.min.js' %}"></script>
+  <script src="{% static 'vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+  <script src="{% static 'vendor/php-email-form/validate.js' %}"></script>
+  <script src="{% static 'vendor/swiper/swiper-bundle.min.js' %}"></script>
+  
+  <script src="{% static 'js/main.js' %}"></script>
 
   <script>
     $(document).ready(function() {
