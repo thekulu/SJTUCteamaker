@@ -22,6 +22,7 @@ from team_interface import views as teamviews
 from django.views.generic import RedirectView
 from django.conf import settings
 from django.conf.urls.static import static
+from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     path('', RedirectView.as_view(url='/index/')),
@@ -31,11 +32,15 @@ urlpatterns = [
     path('blog-single/<int:competition_id>/', homeviews.blogs),
     path('competition/add/', homeviews.competition_add),
     path('competition/delete/', homeviews.competition_delete),
+    path('blog-single/<int:competition_id>/join/<int:team_id>/', homeviews.team_join),
+    path('team_add/<int:competition_id>/', homeviews.team_add),
     path('home/', homeviews.blog),
     path('personal/', mainviews.personal),
     path('team_apply/', mainviews.team_apply),
     path('team_created/', mainviews.team_created),
     path('team_join/', mainviews.team_join),
+    path('login/', mainviews.custom_login, name='login'),
+    path('logout/', auth_views.LogoutView.as_view(), name='logout')
 ]
 
 if settings.DEBUG:

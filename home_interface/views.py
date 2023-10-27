@@ -1,6 +1,6 @@
 from django.shortcuts import render, HttpResponse, redirect
 from django.shortcuts import render, get_object_or_404
-from .models import User, Competition, Team, Discussion
+from .models import User, Competition, Team, Discussion, TeamApplication, Notification
 from django.contrib import messages
 from django.core.files.storage import default_storage
 from django.core.files.base import ContentFile
@@ -42,6 +42,7 @@ def blog(request):
     #         # 返回响应，可以是重定向或其他响应
     #         return HttpResponse('讨论已发布')
     competition = Competition.objects.all()  # 查询数据库中的所有Discussion对象
+    print(competition)
     return render(request, "blog.html",  {'competition': competition})
 
 # 新建竞赛
@@ -93,11 +94,13 @@ def competition_delete(request):
     messages.error(request, '删除成功')
     return redirect("/blog/")
 
+
+# 发布评论
 def blogs(request, competition_id):
     if request.method == 'POST':
         # 获取当前登录用户
-        # user = request.user
-        user = User.objects.first()
+        user = request.user
+        # user = User.objects.first()
         competition = Competition.objects.get(pk=competition_id)
 
         # 获取POST数据
@@ -112,12 +115,67 @@ def blogs(request, competition_id):
             # 返回响应，可以是重定向或其他响应
             return HttpResponse('讨论已发布')
     # 获取所有Discussion对象
+    user = request.user
+    competition = Competition.objects.get(pk=competition_id)
+    teams = Team.objects.filter(competition=competition)
+    print(teams)
+    discussions = Discussion.objects.filter(competition=competition)
+    return render(request, 'blog-single.html', {'competition': competition, 'discussions': discussions, 'teams': teams ,'user': user})
+
+
+
+# 加入 competition_id 竞赛下的 team_id 团队
+def team_join(request, competition_id, team_id): 
+    competition = Competition.objects.get(pk=competition_id)
+    team = Team.objects.get(pk=team_id)
+    # 获取当前登录用户
+    user = request.user
+    application = TeamApplication.objects.create(
+        applicant = user,
+        team = team
+    )
+
+    Notification.objects.create(
+        recipient = team.creator,
+        related_application = application
+        # content
+    )
+    return redirect("/blog-single/")
+
+
+# 创建 competition_id 竞赛下新的 team
+def team_add(request, competition_id):
+    
+    # 默认为 POST
+    
+    name = request.POST.get("name")
+    intro = request.POST.get("intro")
+    # 获取当前登录用户
+    user = request.user
+
+    # 获取当前竞赛
+    competition = Competition.objects.get(pk=competition_id)
+    Team.objects.create(name = name,
+                        competition = competition, 
+                        creator = user,
+                        intro = intro
+                        )
+    # Question: members 如何添加到 team 中
+    # 注意 在 models 添加 intro 字段 
+    # 返回
     competition = Competition.objects.get(pk=competition_id)
     teams = Team.objects.filter(competition=competition)
     discussions = Discussion.objects.filter(competition=competition)
     return render(request, 'blog-single.html', {'competition': competition, 'discussions': discussions, 'teams': teams})
 
-    
+
+# # 删除成员
+# def member_delete(request, nid):
+#     Team.members.objects.filter(id=nid).delete()
+#     return redirect('/blog-single/')
+
+
+
 # def blogs(request, competition_id):
 #     # 创建一个新的 User 实例
 #     new_user = User(

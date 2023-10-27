@@ -50,6 +50,12 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+AUTHENTICATION_BACKENDS = [
+    'main_interface.views.CustomBackend',
+    'django.contrib.auth.backends.ModelBackend',  # 默认后端
+]
+
+
 ROOT_URLCONF = 'SJTUCteamaker.urls'
 
 TEMPLATES = [
@@ -135,3 +141,5 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # 设置媒体文件的URL
 MEDIA_URL = '/media/'
+
+LOGIN_URL = 'login'
