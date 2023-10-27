@@ -168,6 +168,23 @@ def team_add(request, competition_id):
     discussions = Discussion.objects.filter(competition=competition)
     return render(request, 'blog-single.html', {'competition': competition, 'discussions': discussions, 'teams': teams})
 
+# 依据标签输入搜索竞赛
+# path('competition/delete/', homeviews.competition_search),
+def competition_search(request, type):
+    competition = Competition.objects.filter(category=type)
+    # return HttpResponse("删除成功")
+
+    return render(request, "blog.html",  {'competition': competition})
+
+def team_search(request, competition_id):
+    # print("team_search")
+    competition = Competition.objects.get(pk=competition_id)
+    input = request.GET.get('input')
+    teams = Team.objects.filter(competition=competition, name=input)
+    discussions = Discussion.objects.filter(competition=competition)
+    return render(request, 'blog-single.html', {'competition': competition, 'discussions': discussions, 'teams': teams})
+    # 希望跳转到界面2：团队列表
+    # 默认为 GET
 
 # # 删除成员
 # def member_delete(request, nid):

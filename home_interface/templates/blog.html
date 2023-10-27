@@ -56,9 +56,9 @@
           <li><a class="nav-link scrollto " href="/index">欢迎 Home</a></li>
           <li><a class="nav-link scrollto" href="/blog">竞赛大厅</a></li>
           <li><a class="nav-link scrollto" href="/blog">讨论区</a></li>
-          <li><a class="nav-link scrollto " href="Q&A.html">Q & A</a></li>
+          <li><a class="nav-link scrollto " href="/Q&A">Q & A</a></li>
           <li><a class="nav-link scrollto" href="/personal">个人主页</a></li>
-          <li><a href="login.html">登陆login/登出logout</a></li>
+          <li><a href="/login">登陆login/登出logout</a></li>
         </ul>
       </nav><!-- .navbar -->
 
@@ -134,8 +134,12 @@
               <!-- ===== 搜索栏 ===== -->
               <h3 class="sidebar-title">Search</h3>
               <div class="sidebar-item search-form">
-                <form action="">
-                  <input type="text">
+                <!--===== GET 表单 =====-->
+                <form method="get" action="/blog/search/">
+                  <!-- 提交的结果将被发送给 /blog/search/ 这个 URL -->
+                  {% csrf_token %}
+                  <input type="text" name="input" >
+                  <!-- name = input-->
                   <button type="submit"><i class="bi bi-search"></i></button>
                 </form>
               </div><!-- End sidebar search formn-->
@@ -144,9 +148,9 @@
               <h3 class="sidebar-title">类别</h3>
               <div class="sidebar-item categories">
                 <ul>
-                  <li><a href="#">科研项目 <span>(25)</span></a></li>
-                  <li><a href="#">技能竞赛 <span>(12)</span></a></li>
-                  <li><a href="#">科创竞赛 <span>(5)</span></a></li>
+                  <li><a href="/blog/search/1/">科研项目 <span></span></a></li>
+                  <li><a href="/blog/search/2/">技能竞赛 <span></span></a></li>
+                  <li><a href="/blog/search/3/">科创竞赛 <span></span></a></li>
                 </ul>
               </div><!-- End sidebar categories-->
               
@@ -304,16 +308,16 @@
                     </form>
 
                   </div>
+                  </div>
                 </div>
-              </div>
 
-            </div><!-- End sidebar -->
+              </div><!-- End sidebar -->
 
-          </div><!-- End blog sidebar -->
+            </div><!-- End blog sidebar -->
 
+          </div>
 
         </div>
-
       </div>
     </section><!-- End Blog Section -->
 
