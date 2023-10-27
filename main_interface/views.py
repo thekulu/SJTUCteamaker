@@ -25,6 +25,12 @@ class CustomBackend(ModelBackend):
             return None
 
 def custom_login(request):
+    user = request.user
+    if user.is_authenticated:
+        user.is_authenticated = False
+        user.save()
+        return redirect('/index/')
+        
     if request.method == 'POST':
         user_id = request.POST.get('user_id')
         user_password = request.POST.get('user_password')
@@ -46,8 +52,10 @@ def custom_login(request):
         print(user)
 
         if user is not None:
+            user.is_authenticated = True
+            user.save()
             login(request, user)
-            return redirect('/personal/')  # 重定向到登录后的页面
+            return redirect('/index/')  # 重定向到登录后的页面
     return render(request, 'login.html')
 
 # Create your views here.

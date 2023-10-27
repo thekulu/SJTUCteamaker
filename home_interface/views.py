@@ -114,6 +114,8 @@ def blogs(request, competition_id):
     if request.method == 'POST':
         # 获取当前登录用户
         user = request.user
+        if not user.is_authenticated:
+            return redirect('/login/')
         # user = User.objects.first()
         competition = Competition.objects.get(pk=competition_id)
 
@@ -130,6 +132,8 @@ def blogs(request, competition_id):
             return HttpResponse('讨论已发布')
     # 获取所有Discussion对象
     user = request.user
+    if not user.is_authenticated:
+        return redirect('/login/')
     competition = Competition.objects.get(pk=competition_id)
     teams = Team.objects.filter(competition=competition)
     print(teams)
@@ -144,6 +148,8 @@ def team_join(request, competition_id, team_id):
     team = Team.objects.get(pk=team_id)
     # 获取当前登录用户
     user = request.user
+    if not user.is_authenticated:
+        return redirect('/login/')
     application = TeamApplication.objects.create(
         applicant = user,
         team = team
@@ -166,6 +172,8 @@ def team_add(request, competition_id):
     intro = request.POST.get("intro")
     # 获取当前登录用户
     user = request.user
+    if not user.is_authenticated:
+        return redirect('/login/')
 
     # 获取当前竞赛
     competition = Competition.objects.get(pk=competition_id)
