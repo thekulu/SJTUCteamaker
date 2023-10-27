@@ -1,0 +1,10 @@
+<form method="post">
+    {% csrf_token %}
+    <label for="id_user_id">学号:</label>
+    <input type="text" name="user_id" id="id_user_id" required>
+    
+    <label for="id_user_password">密码:</label>
+    <input type="password" name="user_password" id="id_user_password" required>
+    
+    <button type="submit">登录</button>
+</form>

@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 import os
 from pathlib import Path
+import pymysql
+pymysql.install_as_MySQLdb()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -70,7 +72,10 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'SJTUCteamaker.wsgi.application'
 
-
+AUTHENTICATION_BACKENDS = [
+    'main_interface.views.CustomBackend',
+    'django.contrib.auth.backends.ModelBackend',
+]
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
@@ -84,9 +89,9 @@ WSGI_APPLICATION = 'SJTUCteamaker.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'nis3368',
+        'NAME': 'msgdatabase',
         'USER': 'root',
-        'PASSWORD': '2002',
+        'PASSWORD': '123456789',
         'HOST': '127.0.0.1',
         'PORT': '3306',
     }

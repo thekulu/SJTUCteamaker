@@ -32,4 +32,6 @@ urlpatterns = [
     path('team_apply/', mainviews.team_apply),
     path('team_created/', mainviews.team_created),
     path('team_join/', mainviews.team_join),
+    path('login/', mainviews.custom_login, name='login'),
+    path('register/', mainviews.reg),
 ]
