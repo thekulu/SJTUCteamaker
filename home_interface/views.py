@@ -265,3 +265,57 @@ def team_search(request, competition_id):
 #     teams = Team.objects.filter(competition=competition)
 #     discussions = Discussion.objects.filter(competition=competition)
 #     return render(request, 'blog-single.html', {'competition': new_competition, 'discussions': discussions, 'teams': teams})
+
+#申请队伍时会生成两个Notification
+def apply_to_team(request, team_id):
+    team = Team.objects.get(pk=team_id)
+    application = TeamApplication.objects.create(applicant=request.user, team=team, status='pending')
+
+    #给队长的信息
+    Notification.objects.create(
+        recipient=team.creator,
+        content=f"{request.user.username} 申请加入你们的队伍 {team.name}.",
+        related_application=application
+    )
+
+    #给申请者的信息
+    Notification.objects.create(
+        recipient=request.user,
+        content=f"你申请加入队伍 {team.name}.",
+        related_application=application
+    )
+
+    return redirect('team_list')
+
+
+#队长做出决定后生成信息
+def respond_to_application(request, application_id, response):
+    application = TeamApplication.objects.get(pk=application_id)
+
+    if response == "accept":
+        application.status = "accepted"
+        application.save()
+        add_member_to_team(application) #加入到队伍
+
+        #生成同意的Notification
+        Notification.objects.create(
+            recipient=application.applicant,
+            content=f"你申请加入队伍 {application.team.name} 已经被同意",
+            related_application=application
+        )
+        #生成拒绝的Notification
+    else:
+        application.status = "rejected"
+        Notification.objects.create(
+            recipient=application.applicant,
+            content=f"你申请加入队伍 {application.team.name} 已经被拒绝.",
+            related_application=application
+        )
+
+    return redirect('view_notifications')
+
+#把申请者加入队伍
+def add_member_to_team(application):
+    if application.status == "accepted":
+        application.team.members.add(application.applicant)
+        application.team.save()

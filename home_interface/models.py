@@ -98,8 +98,8 @@ class Notification(models.Model):
     recipient = models.ForeignKey(User, on_delete=models.CASCADE, related_name='notifications')
     content = models.TextField()
     related_application = models.ForeignKey(TeamApplication, on_delete=models.CASCADE, null=True, blank=True)
-    timestamp = models.DateTimeField(auto_now_add=True)
-    is_read = models.BooleanField(default=False)
+    timestamp = models.DateTimeField(auto_now_add=True)     #创建时间
+    is_read = models.BooleanField(default=False)            #标记是否已读
 
     def __str__(self):
         return f"Notification for {self.recipient} - {self.content[:20]}"
