@@ -46,7 +46,7 @@
     </div>
   </header><!-- End Header -->
   <!--表单提交,update_profile修改为实际的视图函数-->
-  <form action="/personal/add/" method="post">
+  <form enctype="multipart/form-data" action="/personal/add/" method="post">
     {% csrf_token %}
     <div class="container">
       <!--数据库交互-->
@@ -58,12 +58,12 @@
             <img src="{{ user.profile.url }}" alt="头像" />
           {% else %}
           <!--修改为实际默认头像的路径-->
-          <img src="{% static 'path/avatar.png' %}" alt="默认头像" />
+          <img src="{% static 'img/defult.png' %}" alt="默认头像" />
           {% endif %}
         </div>
-        <input type="file" id="uploadInput" accept="image/*" style="display: none;" />
+        <input type="file" id="uploadInput" name="profile" accept="image/*" style="display: none;" />
         <!--从本地上传图片-->
-        <button id="changeBtn" class="editImg" name="profile"></button>
+        <button id="changeBtn" class="editImg" name="profile" onclick="document.getElementById('uploadInput').click(); return false;"></button>
         <nav class="nav">
           <a href="/personal">个人资料</a>
           <a href="/team_created">创建的队伍</a>
@@ -89,13 +89,13 @@
                   <td class="personal-info1">
                     年级：</td>
                   <td class="personal-info">
-                    <input type="text" name="grade" value="{{user.grade}}"></td>
+                    <input type="text" name="grade" value="{{user.user_grade}}"></td>
                 </tr>
                 <tr>
                   <td class="personal-info1">
                     邮箱：</td>
                   <td class="personal-info">
-                    <input type="text" name="email" value="{{user.email}}"></td>
+                    <input type="text" name="email" value="{{user.user_email}}"></td>
                 </tr>
               </table>
             </div>
@@ -160,3 +160,18 @@
 </body>
 
 </html>
+
+<script>
+  // 当文件上传框的值改变时，显示上传的图像
+  document.getElementById('uploadInput').addEventListener('change', function() {
+    const profileImage = document.getElementById('profile-image');
+    const fileInput = this;
+    if (fileInput.files && fileInput.files[0]) {
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        profileImage.src = e.target.result;
+      };
+      reader.readAsDataURL(fileInput.files[0]);
+    }
+  });
+</script>
