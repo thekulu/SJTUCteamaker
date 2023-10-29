@@ -167,6 +167,14 @@ def team_join(request):
     team = Team.objects.filter(members = user)
     return render(request, 'team_join.html', {'user': user, 'team': team})
 
+def notification(request):
+    user = request.user
+    if request.method == 'POST':
+        notification_id = request.POST.get('notification_id')
+        Notification.objects.get(pk = notification_id).delete()
+        return redirect('/notification/')
+    notification = Notification.objects.filter(recipient = user)
+    return render(request, 'notification.html', {'user': user, 'notification': notification})
 
 
 #队长做出决定后生成信息

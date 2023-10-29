@@ -1,0 +1,100 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人主页</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+    <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'vendor/icofont/icofont.min.css' %}" rel="stylesheet">
+    <link href="{% static 'vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
+    <link href="{% static 'vendor/venobox/venobox.css' %}" rel="stylesheet">
+    <link href="{% static 'vendor/owl.carousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+    <link href="{% static 'vendor/aos/aos.css' %}" rel="stylesheet">
+
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+
+    <link rel="stylesheet" href="{% static 'css/personal2.css' %}">
+    <link rel="stylesheet" href="{% static 'team_created.css' %}">
+    <link rel="stylesheet" href="{% static 'css/notification.css' %}">
+</head>
+
+<body>
+  <!-- ======= Header ======= -->
+  <!-- ======= 导航 ====== -->
+  <header id="header" class="d-flex align-items-center">
+    <div class="container d-flex align-items-center justify-content-between">
+
+      <div class="logo">
+        <h1><a href="/index">竞赛组队网站</a></h1>
+        <!-- Uncomment below if you prefer to use an image logo -->
+        <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+      </div>
+
+      <nav id="navbar" class="navbar">
+        <ul>
+          
+          <li><a class="nav-link scrollto " href="/index">欢迎 Home</a></li>
+          <li><a class="nav-link scrollto" href="/blog">竞赛大厅</a></li>
+          <li><a class="nav-link scrollto" href="/blog">讨论区</a></li>
+          <li><a class="nav-link scrollto " href="/Q&A">Q & A</a></li>
+          <li><a class="nav-link scrollto" href="/personal">个人主页</a></li>
+          <li><a href="/login">登陆login/登出logout</a></li>
+        </ul>
+      </nav><!-- .navbar -->
+
+    </div>
+  </header><!-- End Header -->
+
+  <div class="container">  
+      <!-- 侧边导航栏 -->
+      <aside class="sidenav">
+        <div class="avatar">
+          <img src="{{ user.profile.url }}" alt="头像" />
+        </div>
+        <nav class="nav">
+          <a href="/personal">个人资料</a>
+          <a href="/team_created">创建的队伍</a>
+          <a href="/team_join">加入的队伍</a>
+          <a href="/team_apply">申请的队伍</a>
+          <a href="/notification">消息通知</a>
+        </nav>
+      </aside>
+
+
+      <div class="notification-container">
+        <h2><center><strong>通知</strong></center></h2>
+        <ul class="notification-list">
+          <div class="notification">
+            {% for notification in notification %}
+            <li class="message">
+              <span>{{ notification.content }}</span>
+              <form method="POST" action="/notification/">
+                {% csrf_token %}
+                <input type="hidden" name="notification_id" value="{{ notification.id }}">
+                <button type="submit" class="delete-button">删除</button>
+              </form>
+            </li>
+            {% endfor %}
+          </div>
+        </ul>
+      </div>
+  </div>
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'vendor/jquery.easing/jquery.easing.min.js' %}"></script>
+  <script src="{% static 'vendor/php-email-form/validate.js' %}"></script>
+  <script src="{% static 'vendor/jquery-sticky/jquery.sticky.js' %}"></script>
+  <script src="{% static 'vendor/venobox/venobox.min.js' %}"></script>
+  <script src="{% static 'vendor/owl.carousel/owl.carousel.min.js' %}"></script>
+  <script src="{% static 'vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+  <script src="{% static 'vendor/aos/aos.js' %}"></script>
+  <script src="{% static 'js/main2.js' %}"></script>
+</body>
+
+</html>
