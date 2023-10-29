@@ -15,9 +15,9 @@ class User(models.Model):
     user_name = models.CharField(max_length=15)
     user_password = models.CharField(max_length=20)
 
-    user_id = models.IntegerField(validators=[MaxValueValidator(20), MinValueValidator(1)], unique=True) #学号
+    user_id = models.BigIntegerField(unique=True)  #学号
     user_grade = models.PositiveSmallIntegerField(choices=GRADE_CHOICES,default=1)
-    user_email = models.EmailField(max_length=254,default='sjtu@gmail.com')
+    user_email = models.EmailField(max_length=254,default='添加你的邮箱')
     profile = models.ImageField(upload_to='profile_pictures/', null=True, blank=True) #头像
 
     bio = models.TextField(max_length=500, blank=True,null=True) #Self-introduction
