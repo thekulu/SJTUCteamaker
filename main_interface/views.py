@@ -162,8 +162,18 @@ def team_created(request):
 
 def team_join(request):
     user = request.user
-    if not user.is_authenticated:
-        return redirect('/login/')
+    if request.method == 'POST':
+        team_id = request.POST.get('team_id')
+        team = Team.objects.get(pk=team_id)
+        # 创建通知
+        Notification.objects.create(
+            recipient=team.creator,
+            content=f"你的队伍 {team.name} 内的组员{user.user_name}已经退出.",
+            related_application=None
+        )
+        team.members.remove(user)
+        team.save()
+        return redirect('/team_join/')
     team = Team.objects.filter(members = user)
     return render(request, 'team_join.html', {'user': user, 'team': team})
 
