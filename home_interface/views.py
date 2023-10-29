@@ -144,23 +144,26 @@ def blogs(request, competition_id):
 
 # 加入 competition_id 竞赛下的 team_id 团队
 def team_join(request, competition_id, team_id): 
-    competition = Competition.objects.get(pk=competition_id)
     team = Team.objects.get(pk=team_id)
-    # 获取当前登录用户
-    user = request.user
-    if not user.is_authenticated:
-        return redirect('/login/')
-    application = TeamApplication.objects.create(
-        applicant = user,
-        team = team
+    application = TeamApplication.objects.create(applicant=request.user, team=team, status='pending')
+
+    #给队长的信息
+    Notification.objects.create(
+        recipient=team.creator,
+        content=f"{request.user.user_name} 申请加入你们的队伍 {team.name}.",
+        related_application=application
     )
 
+    #给申请者的信息
     Notification.objects.create(
-        recipient = team.creator,
-        related_application = application
-        # content
+        recipient=request.user,
+        content=f"你申请加入队伍 {team.name}.",
+        related_application=application
     )
-    return redirect("/blog-single/")
+
+    print(application)
+
+    return redirect("/personal/")
 
 
 # 创建 competition_id 竞赛下新的 team

@@ -38,7 +38,7 @@ urlpatterns = [
     path('blog-single/<int:competition_id>/join/<int:team_id>/', homeviews.team_join),
     path('team_add/<int:competition_id>/', homeviews.team_add),
     path('home/', homeviews.blog),
-    path('personal/add', mainviews.personal_add),
+    path('personal/add/', mainviews.personal_add),
     path('personal/', mainviews.personal),
     path('team_apply/', mainviews.team_apply),
     path('team_created/', mainviews.team_created),
