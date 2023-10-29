@@ -1,5 +1,5 @@
 from django.shortcuts import render, HttpResponse, redirect
-from home_interface.models import User, Competition, Team, Discussion
+from home_interface.models import User, Competition, Team, Notification, TeamApplication
 from django.contrib.auth.forms import AuthenticationForm
 from django.shortcuts import render, redirect
 from django.contrib.auth.backends import ModelBackend
@@ -8,6 +8,7 @@ from django.shortcuts import render, redirect
 from django.core.files.storage import default_storage
 from django.core.files.base import ContentFile
 from django.contrib import messages
+from django.db.models import Q
 # from django.contrib.auth.hashers import check_password
 
 class CustomBackend(ModelBackend):
@@ -116,13 +117,44 @@ def personal(request):
 
 def team_apply(request):
     user = request.user
+    if request.method == 'POST':
+        application_id = request.POST.get('application_id')
+        response = request.POST.get('response')
+        respond_to_application(request, application_id, response)
+        return redirect('/team_apply/')
     if not user.is_authenticated:
         return redirect('/login/')
-    competition = Competition.objects.filter(name = input)
-    return render(request, 'team_apply.html', {'user': user})
+    team = Team.objects.filter(creator = user)
+    if team:
+        application_o = TeamApplication.objects.filter(Q(status='Pending') & Q(team__in=team))
+        print(application_o)
+    else:
+        application_o = None
+    application_i = TeamApplication.objects.filter(applicant = user, status = 'Pending')
+    # notification = Notification.objects.filter(recipient = user, is_read = False)
+    return render(request, 'team_apply.html', {'user': user, 'application_o': application_o, 'application_i': application_i})
 
 def team_created(request):
     user = request.user
+    if request.method == 'POST':
+        team_id = request.POST.get('team_id')
+        team = Team.objects.get(pk=team_id)
+        applications = TeamApplication.objects.filter(team=team)
+
+        # 遍历每个申请
+        if applications:
+            for application in applications:
+                # 创建通知
+                Notification.objects.create(
+                    recipient=application.applicant,
+                    content=f"你的申请加入队伍 {application.team.name} 已经被解散.",
+                    related_application=application
+                )
+                # 删除申请
+                application.delete()
+
+        team.delete()
+        
     if not user.is_authenticated:
         return redirect('/login/')
     team = Team.objects.filter(creator = user)
@@ -134,3 +166,44 @@ def team_join(request):
         return redirect('/login/')
     team = Team.objects.filter(members = user)
     return render(request, 'team_join.html', {'user': user, 'team': team})
+
+
+
+#队长做出决定后生成信息
+def respond_to_application(request, application_id, response):
+    application = TeamApplication.objects.get(pk=application_id)
+
+    if response == "accept":
+        application.status = "accepted"
+        application.save()
+        add_member_to_team(application) #加入到队伍
+
+        #生成同意的Notification
+        Notification.objects.create(
+            recipient=application.applicant,
+            content=f"你申请加入队伍 {application.team.name} 已经被同意",
+            related_application=application
+        )
+        #生成拒绝的Notification
+    elif response == "reject":
+        application.status = "rejected"
+        application.save()
+        Notification.objects.create(
+            recipient=application.applicant,
+            content=f"你申请加入队伍 {application.team.name} 已经被拒绝.",
+            related_application=application
+        )
+    elif response == "delete":
+        Notification.objects.create(
+            recipient=application.applicant,
+            content=f"你申请加入队伍 {application.team.name} 已经被你自己删除.",
+            related_application=application
+        )
+        application.delete()
+    return
+
+#把申请者加入队伍
+def add_member_to_team(application):
+    if application.status == "accepted":
+        application.team.members.add(application.applicant)
+        application.team.save()

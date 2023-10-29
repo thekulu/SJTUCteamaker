@@ -346,8 +346,10 @@
                       <td> {{ obj.intro }} </td>
                       <td> 
                         <!-- 加入竞赛 传递 competition_id team_id user_id? -->
-                        <button type="button" class="btn btn-dark btn-sm" data-bs-toggle="modal" data-bs-target="#myModal-1" 
-                        href="/blog-single/{{ competition.id }}/join/{{ obj.id }}/">加入</button>
+                        <a href="/blog-single/{{ competition.id }}/join/{{ obj.id }}/">
+                          <button type="button" class="btn btn-dark btn-sm" data-bs-toggle="modal" data-bs-target="#myModal-1">加入</button>
+                        </a>
+                        
 
                         <!-- 解散竞赛 -->
                         <button type="button" class="btn btn-light btn-sm" data-bs-toggle="modal" data-bs-target="#myModal-2"

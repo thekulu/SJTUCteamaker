@@ -72,32 +72,75 @@
         <div class="table_container">
           <table>
             <tr>
-              <td class="middle-cell">队伍名称</td>
+              <td class="middle-cell">申请人名称</td>
               <td class="middle-cell">竞赛项目</td>
-              <td class="small-cell">队长</td>
-              <td class="large-cell">队伍成员</td>
+              <td class="small-cell">头像</td>
+              <td class="large-cell">类型</td>
               <td class="small-cell">选项</td>
             </tr>
-            {% for team in team %}
+            {% for application_o in application_o %}
             <tr>
-              <td class="middle-cell">{{ team.name }}</td>
-              <td class="middle-cell">{{ team.competition }}</td>
+              <td class="middle-cell">{{ application_o.applicant.user_name }}</td>
+              <td class="middle-cell">{{ application_o.team.name }}</td>
               <td class="small-cell">
                 <div class="member-avatar">
-                  <img src="{{ team.creator.profile.url }}" alt="队长头像">
+                  <img src="{{ application_o.applicant.profile.url }}" alt="队长头像">
                   </div>
               </td>
               <td class="large-cell">
-                <ul>
+                他人加入申请
+                <!-- <ul>
                   {% for member in team.members.all %}
                   <li>
                       <img src="{{ member.profile.url }}" alt="{{ member.name }}" class="member-avatar">
                   </li>
                   {% endfor %}
-              </ul>
+              </ul> -->
+              </td>
+              
+              <td class="small-cell">
+                <form action="/team_apply/" method="post">
+                  {% csrf_token %}
+                  <input type="hidden" name="response" value="accept">
+                  <input type="hidden" name="application_id" value="{{ application_o.id }}">
+                  <button type="submit" class="option-button">同意</button>
+                </form>
+                <form action="/team_apply/" method="post">
+                  {% csrf_token %}
+                  <input type="hidden" name="response" value="reject">
+                  <input type="hidden" name="application_id" value="{{ application_o.id }}">
+                  <button type="submit" class="option-button">拒绝</button>
+                </form>
+              </td>
+              </form>
+            </tr>
+            {% endfor %}
+            {% for application_i in application_i %}
+            <tr>
+              <td class="middle-cell">{{ application_i.applicant.user_name }}</td>
+              <td class="middle-cell">{{ application_i.team.name }}</td>
+              <td class="small-cell">
+                <div class="member-avatar">
+                  <img src="{{ application_i.applicant.profile.url }}" alt="队长头像">
+                  </div>
+              </td>
+              <td class="large-cell">
+                我的申请
+                <!-- <ul>
+                  {% for member in team.members.all %}
+                  <li>
+                      <img src="{{ member.profile.url }}" alt="{{ member.name }}" class="member-avatar">
+                  </li>
+                  {% endfor %}
+              </ul> -->
               </td>
               <td class="small-cell">
-                <button class="option-button">取消申请</button>
+                <form action="/team_apply/" method="post">
+                  {% csrf_token %}
+                  <input type="hidden" name="response" value="delete">
+                  <input type="hidden" name="application_id" value="{{ application_i.id }}">
+                  <button type="submit" class="option-button">取消申请</button>
+                </form>
               </td>
             </tr>
             {% endfor %}
